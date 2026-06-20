@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest caches
+.pytest_cache/
+
+# Environments
+.env
+.env.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Temporary deployment directory
+deploy_temp/
+development.log

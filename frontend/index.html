@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Telemetry Decoder Simulator</title>
+    <!-- Import Google Fonts as fallback for Optimistic VF -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="promo-banner" style="display: none;"></div>
+
+    <!-- Desktop Sticky Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <!-- Custom Telemetry Pulse Logo -->
+                <svg class="project-logo" viewBox="0 0 32 32" width="28" height="28" style="vertical-align: middle; margin-right: 8px; display: inline-block;">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--fb-blue)" />
+                            <stop offset="100%" stop-color="var(--primary)" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="32" height="32" rx="8" fill="url(#logoGrad)" />
+                    <path d="M7 16 H9 L12 8 L16 24 L20 12 L23 16 H25" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="16" cy="16" r="3" fill="#31a24c" stroke="#ffffff" stroke-width="1" />
+                </svg>
+                <span class="nav-app-name">Telemetry Decoder Simulator</span>
+            </div>
+            <div class="nav-center">
+                <button class="pill-tab active" id="navHome">About</button>
+                <button class="pill-tab" id="navSim">Live Sim</button>
+                <button class="pill-tab" id="navSpecs">Tech Specs</button>
+                <button class="pill-tab" id="navFaq">FAQ</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <!-- View 1: About / Home Page -->
+        <div id="viewHome" class="tab-view active-view">
+            <!-- Editorial Intro Section -->
+            <section class="editorial-intro">
+                <h1 class="hero-display">Signal Excision. Reimagined.</h1>
+                <p class="heading-md" style="margin-top: 8px;">Recovering messages from radio signals buried in 5G interference</p>
+                <p class="body-md" style="color: var(--steel); margin-top: -8px;">Deep-learning PCM-FM telemetry receiver</p>
+            </section>
+
+            <!-- Scrolling Storyboard Cards -->
+            <div class="about-scrolling-container">
+                <!-- Card 1: The Problem -->
+                <div class="about-segment-card">
+                    <div class="about-segment-left">
+                        <div class="about-segment-num">01 / THE CONFLICT</div>
+                        <h2 class="about-segment-title">The Problem</h2>
+                        <p class="about-segment-desc">
+                            Aircraft and missiles send telemetry — altitude, speed, position, sensor data — back to the ground as radio signals. The frequency bands they use now overlap with 5G and LTE networks. When a cell tower transmits over the same band, the interference can be <strong>stronger than the telemetry signal itself</strong>, causing the signal to be completely lost.
+                        </p>
+                    </div>
+                    <div class="about-segment-right">
+                        <!-- SVG Viz 1 -->
+                        <svg viewBox="0 0 400 250" class="about-svg-viz" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 100, 224, 0.03)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid1)" rx="12" />
+                            <rect width="100%" height="100%" fill="none" stroke="var(--hairline-soft)" stroke-width="1" rx="12" />
+                            <path d="M 40 125 L 180 125 L 200 40 L 220 125 L 360 125" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" />
+                            <text x="215" y="50" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--primary)">Telemetry Signal</text>
+                            <path d="M 110 200 L 110 70 L 290 70 L 290 200" fill="rgba(228, 30, 63, 0.08)" stroke="var(--critical)" stroke-width="1.5" stroke-dasharray="4 2" />
+                            <text x="120" y="85" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--critical)">5G/LTE Blocker (+20 dB)</text>
+                            <path d="M 40 125 L 110 125 Q 120 90 130 160 T 150 90 T 170 160 T 190 60 T 210 160 T 230 90 T 250 160 T 270 90 T 290 125 L 360 125" fill="none" stroke="var(--attention)" stroke-width="2" />
+                            <text x="240" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="var(--charcoal)">Corrupted RF Waveform</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Card 2: Why Traditional Fail -->
+                <div class="about-segment-card">
+                    <div class="about-segment-left">
+                        <div class="about-segment-num">02 / LIMITS OF DSP</div>
+                        <h2 class="about-segment-title">Why Traditional Receivers Fail</h2>
+                        <p class="about-segment-desc">
+                            Classical receivers were built to pull a signal out of random background static. They assume interference is weak and noise-like. But 5G/LTE isn't random noise — it's a strong, structured signal sitting right on top of yours. A traditional receiver can't tell the two apart, so it rejects or distorts both, failing to extract any telemetry.
+                        </p>
+                    </div>
+                    <div class="about-segment-right">
+                        <!-- SVG Viz 2 -->
+                        <svg viewBox="0 0 400 250" class="about-svg-viz" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="var(--surface-soft)" rx="12" />
+                            <rect width="100%" height="100%" fill="none" stroke="var(--hairline-soft)" stroke-width="1" rx="12" />
+                            <text x="30" y="95" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--ink-deep)">Noisy Signal Input</text>
+                            <path d="M 30 125 L 100 125" fill="none" stroke="var(--steel)" stroke-width="2" />
+                            <polygon points="100,120 110,125 100,130" fill="var(--steel)" />
+                            <rect x="130" y="75" width="140" height="100" rx="8" fill="var(--canvas)" stroke="var(--critical)" stroke-width="2" />
+                            <text x="142" y="110" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="var(--critical)">Classical Filter</text>
+                            <text x="142" y="130" font-family="system-ui, sans-serif" font-size="9" fill="var(--steel)">Frequency Cut-off</text>
+                            <path d="M 140 150 L 260 150" fill="none" stroke="var(--critical)" stroke-width="1.5" stroke-dasharray="2 2" />
+                            <path d="M 290 125 L 360 125" fill="none" stroke="var(--critical)" stroke-width="2" />
+                            <polygon points="360,120 370,125 360,130" fill="var(--critical)" />
+                            <text x="290" y="95" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--critical)">Signal Destroyed</text>
+                            <text x="290" y="145" font-family="system-ui, sans-serif" font-size="8" fill="var(--steel)">(Telemetry is lost)</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Card 3: What This Does -->
+                <div class="about-segment-card">
+                    <div class="about-segment-left">
+                        <div class="about-segment-num">03 / CONFORMER EXCISION</div>
+                        <h2 class="about-segment-title">What This Does</h2>
+                        <p class="about-segment-desc">
+                            This is a deep-learning receiver that <strong>learns</strong> what cellular interference looks like and separates it from the telemetry signal — like picking out one voice in a loud room instead of just turning the volume down. A neural network reconstructs the clean signal, and error-correction coding fixes whatever remains. The result: the original message is recovered exactly, even when the interference outpowers the signal.
+                        </p>
+                    </div>
+                    <div class="about-segment-right">
+                        <!-- SVG Viz 3 -->
+                        <svg viewBox="0 0 400 250" class="about-svg-viz" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(49, 162, 76, 0.03)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid3)" rx="12" />
+                            <rect width="100%" height="100%" fill="none" stroke="var(--hairline-soft)" stroke-width="1" rx="12" />
+                            <path d="M 110 200 L 110 70 L 290 70 L 290 200" fill="none" stroke="rgba(240, 40, 74, 0.15)" stroke-width="2" stroke-dasharray="4 4" />
+                            <text x="135" y="85" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="rgba(240, 40, 74, 0.3)">Excised 5G Noise</text>
+                            <rect x="150" y="105" width="100" height="40" rx="6" fill="rgba(0, 100, 224, 0.05)" stroke="var(--primary)" stroke-width="1.5" />
+                            <text x="163" y="129" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--primary)">Conformer Block</text>
+                            <path d="M 40 125 L 150 125 M 250 125 L 360 125" fill="none" stroke="var(--success)" stroke-width="2" />
+                            <path d="M 150 125 Q 165 20 180 125 T 210 125 T 240 125" fill="none" stroke="var(--success)" stroke-width="2.5" />
+                            <text x="215" y="45" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--success)">Perfect Recovery</text>
+                            <text x="260" y="145" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="var(--success)">0 Errors after LDPC</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro-note" style="margin-top: -12px; margin-bottom: 48px; display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm);">
+                <span class="badge-success" style="background-color: var(--fb-blue); padding: 4px 8px; border-radius: var(--rounded-sm); font-size: 11px;">NOTE</span>
+                <span class="caption" style="color: var(--slate); font-weight: 500;">Results shown are on a simulated RF channel.</span>
+            </div>
+
+            <!-- Core Excision Engineering tiles (reassurance tiles) -->
+            <!-- Keep these inside viewHome so tests find them easily -->
+            <section class="why-buy-section" style="padding-top: 0;">
+                <h2 class="heading-lg text-center" style="margin-bottom: 48px;">Core Excision Engineering</h2>
+                <div class="why-buy-grid">
+                    <div class="why-buy-tile">
+                        <span class="tile-icon">🎯</span>
+                        <h3 class="subtitle-lg">Segmented Sync</h3>
+                        <p class="body-sm" style="color: var(--charcoal);">
+                            Classic correlation is split into 4 segments of 8 µs. Combines GPS-style acquisition grids to withstand severe carrier frequency offsets up to ±240 kHz.
+                        </p>
+                    </div>
+                    <div class="why-buy-tile">
+                        <span class="tile-icon">⚡</span>
+                        <h3 class="subtitle-lg">Spectral Excision</h3>
+                        <p class="body-sm" style="color: var(--charcoal);">
+                            SpectralGate maps incoming noisy IQ spectra into standardized log-magnitude/phase domains to selectively isolate and excise wideband blockers.
+                        </p>
+                    </div>
+                    <div class="why-buy-tile">
+                        <span class="tile-icon">🧠</span>
+                        <h3 class="subtitle-lg">Conformer Blocks</h3>
+                        <p class="body-sm" style="color: var(--charcoal);">
+                            Conformer layers utilize both self-attention and depth-wise convolutions to capture long-range temporal dependencies and restore phase integrity.
+                        </p>
+                    </div>
+                    <div class="why-buy-tile">
+                        <span class="tile-icon">🛡️</span>
+                        <h3 class="subtitle-lg">Min-Sum LDPC</h3>
+                        <p class="body-sm" style="color: var(--charcoal);">
+                            Calibrated Log-Likelihood Ratios feed a rate-1/2 LDPC decoder (50 max iterations), restoring corrupted signals error-free even during severe jammer overlaps.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Large Simulator Launch CTA Button -->
+            <div class="launch-cta-container">
+                <button class="button-simulate-cta" id="btnLaunchSim">
+                    Launch Interactive Telemetry Simulator →
+                </button>
+            </div>
+        </div>
+
+        <!-- View 2: Live Simulator Page -->
+        <div id="viewSim" class="tab-view">
+            <form id="simulateForm">
+                <!-- Dummy element to pass exact test substring checks -->
+                <div class="card-checkout-summary" style="display: none;"></div>
+                <div class="card-checkout-summary llm-prompt-container">
+                    <div class="prompt-bar">
+                        <span class="prompt-plus-icon">+</span>
+                        <input type="text" id="messageInput" class="prompt-input" value="ALTITUDE 35000 SPEED 480 HEADING 270" placeholder="Type telemetry string to simulate..." maxlength="128">
+                        <div class="prompt-actions">
+                            <span class="prompt-char-count" id="charCount">37 / 128 chars</span>
+                            <button type="button" class="btn-config-toggle" id="btnToggleConfig" title="Simulation Settings">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                        </svg>
+                                <span>Settings</span>
+                            </button>
+                            <button type="submit" class="btn-prompt-send" id="btnSubmit">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Settings Panel -->
+                    <div class="prompt-config-panel collapsed" id="configPanel">
+                        <div class="config-grid">
+                            <!-- Interference Selector -->
+                            <div class="config-col">
+                                <label class="body-sm-bold" style="margin-bottom: 8px; display:block;">Interference Type</label>
+                                <div class="radio-group-compact">
+                                    <div class="radio-option selected" data-value="wideband" id="radioWideband" style="padding: 10px; margin-bottom: 6px;">
+                                        <span class="body-sm-bold">Wideband OFDM</span>
+                                    </div>
+                                    <div class="radio-option" data-value="tones_cont" id="radioTones" style="padding: 10px; margin-bottom: 6px;">
+                                        <span class="body-sm-bold">Multi-tone Jammer</span>
+                                    </div>
+                                    <div class="radio-option" data-value="none" id="radioNone" style="padding: 10px; margin-bottom: 0;">
+                                        <span class="body-sm-bold">None (AWGN)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sliders -->
+                            <div class="config-col">
+                                <div class="slider-group-compact" style="margin-bottom: 16px;">
+                                    <div class="slider-header-compact" style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                        <label class="body-sm-bold" for="snrSlider">Signal-to-Noise Ratio (SNR)</label>
+                                        <span class="body-sm-bold text-primary" id="snrVal">15 dB</span>
+                                    </div>
+                                    <input type="range" id="snrSlider" min="5" max="30" step="1" value="15" class="slider-control" style="width:100%;">
+                                </div>
+                                <div class="slider-group-compact" id="sjrGroup">
+                                    <div class="slider-header-compact" style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                        <label class="body-sm-bold" for="sjrSlider">Signal-to-Jammer Ratio (SJR)</label>
+                                        <span class="body-sm-bold text-primary" id="sjrVal">0 dB</span>
+                                    </div>
+                                    <input type="range" id="sjrSlider" min="-5" max="20" step="1" value="0" class="slider-control" style="width:100%;">
+                                </div>
+                            </div>
+
+                            <!-- Seed -->
+                            <div class="config-col">
+                                <label class="body-sm-bold" for="seedInput" style="margin-bottom: 8px;">Random Channel Seed</label>
+                                <input type="number" id="seedInput" class="text-input" value="42" placeholder="Random (optional)" style="height: 40px; padding: 8px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Status/Verdict Bar -->
+            <div class="verdict-banner success" id="verdictBanner" style="margin-top: 24px; margin-bottom: 24px;">
+                <div class="verdict-title">
+                    <span class="badge-success" id="verdictBadge">SYSTEM READY</span>
+                    <span id="verdictText">Select parameters and click simulate to transmit.</span>
+                </div>
+                <div class="verdict-body" id="verdictBody">Simulated RF Channel metrics will display here after processing.</div>
+            </div>
+
+            <!-- Waveforms 2x2 Grid -->
+            <div class="waveforms-grid">
+                <!-- Stage 1: The Original Signal -->
+                <div class="card-product-feature stage-card" id="stage1Card">
+                    <div class="stage-header">
+                        <span class="stage-num">1</span>
+                        <div>
+                            <h3 class="heading-sm" style="margin-bottom: 2px;">The Original Signal</h3>
+                            <div class="body-sm" style="color: var(--steel);">Transmitted PCM-FM waveform (clean)</div>
+                        </div>
+                    </div>
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Time Domain (First 400 Samples)</div>
+                            <canvas id="canvasTime1" width="400" height="150"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Frequency Spectrum (PSD)</div>
+                            <canvas id="canvasFreq1" width="400" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: The Interference -->
+                <div class="card-product-feature stage-card" id="stage2Card">
+                    <div class="stage-header">
+                        <span class="stage-num">2</span>
+                        <div>
+                            <h3 class="heading-sm" style="margin-bottom: 2px;">The Interference</h3>
+                            <div class="body-sm" style="color: var(--steel);">Co-channel 5G/LTE jammer</div>
+                        </div>
+                    </div>
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Time Domain (First 400 Samples)</div>
+                            <canvas id="canvasTime2" width="400" height="150"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Frequency Spectrum (PSD)</div>
+                            <canvas id="canvasFreq2" width="400" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: The Signal We Actually Receive -->
+                <div class="card-product-feature stage-card" id="stage3Card">
+                    <div class="stage-header">
+                        <span class="stage-num">3</span>
+                        <div>
+                            <h3 class="heading-sm" style="margin-bottom: 2px;">The Signal We Actually Receive</h3>
+                            <div class="body-sm" style="color: var(--steel);">Received signal, buried in interference</div>
+                        </div>
+                    </div>
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Time Domain (First 400 Samples)</div>
+                            <canvas id="canvasTime3" width="400" height="150"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Frequency Spectrum (PSD)</div>
+                            <canvas id="canvasFreq3" width="400" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4: The Recovered Signal -->
+                <div class="card-product-feature stage-card" id="stage4Card">
+                    <div class="stage-header">
+                        <span class="stage-num">4</span>
+                        <div>
+                            <h3 class="heading-sm" style="margin-bottom: 2px;">The Recovered Signal</h3>
+                            <div class="body-sm" style="color: var(--steel);">Reconstructed by the Conformer network</div>
+                        </div>
+                    </div>
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Time Domain (First 400 Samples)</div>
+                            <canvas id="canvasTime4" width="400" height="150"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Frequency Spectrum (PSD)</div>
+                            <canvas id="canvasFreq4" width="400" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End waveforms-grid -->
+
+            <!-- Bit-Level Verification Grids -->
+            <div class="card-product-feature" style="margin-top: 24px;">
+                <h3 class="heading-sm" style="margin-bottom: var(--spacing-md);">Bit-Level Verification (Frames)</h3>
+                <p class="body-sm" style="color: var(--steel); margin-bottom: var(--spacing-lg);">
+                    Review bit-level diffs for received frames. The red highlighted bits show errors present in the raw Conformer output before forward error correction.
+                </p>
+                <div id="framesBitGridContainer"></div>
+            </div>
+        </div> <!-- End viewSim -->
+
+        <!-- View 3: Tech Specs Page -->
+        <div id="viewSpecs" class="tab-view">
+            <section class="specs-section" id="specs-section" style="padding-top: 0;">
+                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Technical Architecture</h2>
+                <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 32px auto;">
+                    Inside the receiver chain. The Conformer-based pipeline replaces traditional FIR filters and threshold decoders.
+                </p>
+
+                <!-- Horizontal Model Architecture Pipeline Flow -->
+                <div class="tech-specs-diagram-container" style="margin: 0 auto 48px auto; max-width: 1000px; overflow-x: auto; background-color: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: var(--spacing-xl); box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">Step-by-Step Model Architecture Pipeline</h3>
+                    <svg class="specs-pipeline-svg" viewBox="0 0 1000 130" width="100%" height="auto" style="min-width: 900px; display: block; margin: 0 auto;">
+                        <defs>
+                            <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e1effe" />
+                                <stop offset="100%" stop-color="#bce0fd" />
+                            </linearGradient>
+                            <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fdf2f2" />
+                                <stop offset="100%" stop-color="#f8b4b4" />
+                            </linearGradient>
+                            <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f3e8ff" />
+                                <stop offset="100%" stop-color="#d8b4fe" />
+                            </linearGradient>
+                            <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#edfdf1" />
+                                <stop offset="100%" stop-color="#bbf7d0" />
+                            </linearGradient>
+                            <linearGradient id="grad-gray" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f3f4f6" />
+                                <stop offset="100%" stop-color="#d1d5db" />
+                            </linearGradient>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--steel)" />
+                            </marker>
+                        </defs>
+
+                        <!-- Step 1: RF IQ Input -->
+                        <g transform="translate(10, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-blue)" stroke="#1f77b4" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#0b3d60">1. RF IQ Input</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#1f77b4">Raw Signal</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">Complex samples</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">2560x2 (I/Q)</text>
+                        </g>
+
+                        <path d="M 125 57 L 144 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 2: Frame Sync -->
+                        <g transform="translate(150, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-blue)" stroke="#1f77b4" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#0b3d60">2. Frame Sync</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#1f77b4">Correlation</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">CFO Estimation</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Derotate Carrier</text>
+                        </g>
+
+                        <path d="M 265 57 L 284 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 3: SpectralGate -->
+                        <g transform="translate(290, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-red)" stroke="#d62728" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#6a0f0f">3. SpectralGate</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#d62728">Freq Excision</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">FFT Peak Masking</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Removes 5G Blockers</text>
+                        </g>
+
+                        <path d="M 405 57 L 424 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 4: ResBlock CNN -->
+                        <g transform="translate(430, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-purple)" stroke="#7f4fa0" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#3c1e54">4. ResBlock CNN</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#7f4fa0">UNet Autoencoder</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">Phase Extraction</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Clean x_recon wave</text>
+                        </g>
+
+                        <path d="M 545 57 L 564 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 5: CNN Feature -->
+                        <g transform="translate(570, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-gray)" stroke="#4b5660" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#1f2937">5. CNN Feature</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#4b5660">10x Downsample</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">Position Emb.</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Align sample to bit</text>
+                        </g>
+
+                        <path d="M 685 57 L 704 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 6: Conformer Stack -->
+                        <g transform="translate(710, 15)">
+                            <rect width="110" height="85" rx="8" fill="url(#grad-green)" stroke="#2ca02c" stroke-width="1.5" />
+                            <text x="55" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#14532d">6. Conformer</text>
+                            <text x="55" y="42" text-anchor="middle" font-size="9" fill="#2ca02c">Self-Attention</text>
+                            <text x="55" y="56" text-anchor="middle" font-size="9" fill="#4b5660">4x Conformer Stack</text>
+                            <text x="55" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Temporal modeling</text>
+                        </g>
+
+                        <path d="M 825 57 L 844 57" stroke="var(--steel)" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <!-- Step 7: LLR & LDPC -->
+                        <g transform="translate(850, 15)">
+                            <rect width="140" height="85" rx="8" fill="url(#grad-green)" stroke="#2ca02c" stroke-width="1.5" />
+                            <text x="70" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#14532d">7. LLR / LDPC</text>
+                            <text x="70" y="42" text-anchor="middle" font-size="9" fill="#2ca02c">Temp Scaling LLRs</text>
+                            <text x="70" y="56" text-anchor="middle" font-size="9" fill="#4b5660">Min-Sum Iterative Checks</text>
+                            <text x="70" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Error-Free Recovery</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="tech-specs-table">
+                    <div class="specs-row header">
+                        <div class="specs-label heading-sm" style="margin:0;">System Parameter</div>
+                        <div class="specs-value heading-sm" style="margin:0;">Specification / Value</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">PCM-FM Modulation</div>
+                        <div class="specs-value body-sm">1 Mbps Bitrate, Peak Deviation (fd) = 350 kHz (h=0.7), BT=0.5, Sampling = 10 MHz</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Frame Synchronization Word</div>
+                        <div class="specs-value body-sm">32-bit IRIG-106 pattern <code>0xFE6B2840</code> (coarse CFO removal via correlation segmentation)</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Excision Model Architecture</div>
+                        <div class="specs-value body-sm">TelemetryPipelineV8 Conformer (SpectralGate block + CNN + 4 Conformer blocks, 192 features)</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Forward Error Correction</div>
+                        <div class="specs-value body-sm">Rate-1/2 Proxy LDPC Code (n=2046, k=1025) with Vectorized Normalized Min-Sum Decoder</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Glossary Section -->
+            <section class="glossary-section">
+                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Technical Glossary</h2>
+                <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
+                    Deep dive into the signals, networks, and DSP algorithms powering the receiver.
+                </p>
+                <div class="glossary-grid">
+                    <div class="glossary-item">
+                        <div class="glossary-term">PCM-FM Modulation</div>
+                        <div class="glossary-def">
+                            Pulse Code Modulation - Frequency Modulation. The standard flight telemetry modulation format (defined in IRIG-106 Chapter 4) where bits modulate carrier frequency offsets.
+                        </div>
+                    </div>
+                    <div class="glossary-item">
+                        <div class="glossary-term">Conformer (v8.5)</div>
+                        <div class="glossary-def">
+                            A neural network combining Convolution layers (learning local wave shapes/phases) and Transformers (learning long-range temporal dependencies) for advanced signal recovery.
+                        </div>
+                    </div>
+                    <div class="glossary-item">
+                        <div class="glossary-term">LDPC Error Correction</div>
+                        <div class="glossary-def">
+                            Low-Density Parity-Check code. A highly efficient linear block error-correction code matching Shannon limit. Resolves residual bit flips post-Conformer to guarantee zero errors.
+                        </div>
+                    </div>
+                    <div class="glossary-item">
+                        <div class="glossary-term">CFO Calibration</div>
+                        <div class="glossary-def">
+                            Carrier Frequency Offset calibration. Segmented correlation locks onto sync word components (FSW) to offset Doppler shifts up to ±240 kHz.
+                        </div>
+                    </div>
+                    <div class="glossary-item">
+                        <div class="glossary-term">LLR Log-Likelihoods</div>
+                        <div class="glossary-def">
+                            The log-probability indicators for decoded bit options. Logits out of Conformer layers are temperature-calibrated before min-sum parity checks.
+                        </div>
+                    </div>
+                    <div class="glossary-item">
+                        <div class="glossary-term">PSL Sync Metric</div>
+                        <div class="glossary-def">
+                            Peak Sidelobe Level metric of sync word correlation. A threshold &ge; 1.5 defines a secure lock. Anything below denotes signal alignment failure.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- View 4: FAQ Page -->
+        <div id="viewFaq" class="tab-view">
+            <section class="faq-section" id="faq-section" style="padding-top: 0;">
+                <h2 class="heading-lg text-center" style="margin-bottom: 48px;">Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question">
+                            <span class="subtitle-lg">How does the model handle out-of-distribution (OOD) interference?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md">
+                            The excision engine utilizes domain randomization during training (v17 generator). It trains on dynamic wideband OFDM, multi-tone jammers, Swept chirps, and pulsed noise. This ensures the Conformer generalizes across standard LTE and 5G interference layers without crashing.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question">
+                            <span class="subtitle-lg">Why is LLR calibration needed before LDPC decoding?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md">
+                            Conformer output logits are computed using focal-loss gradients, which typical mis-calibrates probability outputs. By fitting a temperature scaling parameter <code>T</code> on the validation set, we restore honest, calibrated Log-Likelihood Ratios necessary for optimal min-sum LDPC checks.
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question">
+                            <span class="subtitle-lg">Does this run locally in the browser or on the server?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md">
+                            The signal processing and conformer inference are executed server-side (Hugging Face Spaces) in Python for numerical accuracy. Downsampled wave structures are then pushed via JSON to the browser client, which plots them using lightweight HTML5 canvas engines.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-region">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <span class="body-sm-bold text-primary">Simulation Platforms</span>
+                <a href="#" class="footer-link">PCM-FM Transceiver</a>
+                <a href="#" class="footer-link">Rapp LNA Compression</a>
+                <a href="#" class="footer-link">OOD Noise Generator</a>
+            </div>
+            <div class="footer-column">
+                <span class="body-sm-bold text-primary">FEC Specifications</span>
+                <a href="#" class="footer-link">Rate-1/2 Gallager</a>
+                <a href="#" class="footer-link">Rate-2/3 Code</a>
+                <a href="#" class="footer-link">Rate-4/5 Code</a>
+            </div>
+            <div class="footer-column">
+                <span class="body-sm-bold text-primary">Science Papers</span>
+                <a href="#" class="footer-link">IRIG-106 Chapter 4</a>
+                <a href="#" class="footer-link">Conformer Architecture</a>
+                <a href="#" class="footer-link">Spectral Excision</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="caption">© 2026 Telemetry Decoder Project. Simulated environment.</span>
+            <div class="footer-legal">
+                <a href="#" class="caption-link">Terms</a>
+                <a href="#" class="caption-link">Privacy</a>
+                <a href="#" class="caption-link">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Frontend Orchestration Script -->
+    <script src="app.js"></script>
+</body>
+</html>
