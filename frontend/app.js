@@ -910,9 +910,5 @@ Hugging Face Spaces may take 15-20 seconds to wake up if it was sleeping. Please
             runFecAnimation();
         });
     }
-        } finally {
-            btnSubmit.disabled = false;
-            if (btnText) btnText.textContent = "Simulate Telemetry Journey";
-        }
-    });
 });
+
