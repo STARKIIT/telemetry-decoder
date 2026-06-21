@@ -229,7 +229,7 @@ def run_coded_demo(message, interference="tones_cont", sjr_db=0.0,
     rng = np.random.default_rng(seed)
     if model is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        ckpt = torch.load(CHECKPOINT, map_location=device)
+        ckpt = torch.load(CHECKPOINT, map_location=device, weights_only=True)
         model = it.TelemetryPipelineV8(it.CFG).to(device).eval()
         model.load_state_dict(ckpt["model_state"])
 

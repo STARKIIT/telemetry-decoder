@@ -104,14 +104,14 @@ swapping in the exact standardized code is a validation step still to be done.
 
 | Capability | Status |
 |---|---|
-| Recovers telemetry under realistic 5G/LTE interference | ✅ demonstrated (simulation) |
-| Zero errors after correction, across tested range | ✅ demonstrated (simulation) |
-| Validated end-to-end (sync → model → error correction) | ✅ |
-| Robust to timing / gain / frequency offset | ✅ within documented limits |
+| Recovers telemetry under realistic 5G/LTE interference | **demonstrated (simulation)** |
+| Zero errors after correction, across tested range | **demonstrated (simulation)** |
+| Validated end-to-end (sync → model → error correction) | **validated** |
+| Robust to timing / gain / frequency offset | **within documented limits** |
 | Runs at real-time speed | ⚠️ ~0.75× on L4; clear paths to close |
 | Continuous narrowband jamming at equal power | ⚠️ degraded but correctable |
-| Tested on real radio hardware | ❌ next phase |
-| Exact standardized error-correction code | ❌ proxy used; swap pending |
+| Tested on real radio hardware | <span style="color: gray;">**next phase**</span> |
+| Exact standardized error-correction code | <span style="color: gray;">**proxy used; swap pending**</span> |
 
 **Bottom line:** a complete, validated receiver in simulation, with a clear and
 honest list of what real-world deployment still requires — real-hardware

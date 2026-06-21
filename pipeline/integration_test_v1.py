@@ -394,7 +394,7 @@ def main():
     print(f"Device: {device}")
     sf = load_sync_module()
 
-    ckpt = torch.load(CHECKPOINT, map_location=device)
+    ckpt = torch.load(CHECKPOINT, map_location=device, weights_only=True)
     model = TelemetryPipelineV8(CFG).to(device).eval()
     model.load_state_dict(ckpt["model_state"])
     print(f"  Loaded EMA weights (epoch {ckpt.get('epoch', '?')})\n")

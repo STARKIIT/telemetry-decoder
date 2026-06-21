@@ -55,7 +55,7 @@ _MODEL = {"m": None, "dev": None}
 def _get_model():
     if _MODEL["m"] is None:
         dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        ckpt = torch.load(fec.CHECKPOINT, map_location=dev)
+        ckpt = torch.load(fec.CHECKPOINT, map_location=dev, weights_only=True)
         m = it.TelemetryPipelineV8(it.CFG).to(dev).eval()
         m.load_state_dict(ckpt["model_state"])
         _MODEL["m"], _MODEL["dev"] = m, dev
