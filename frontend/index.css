@@ -1026,10 +1026,6 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--surface-soft);
-    border-radius: var(--rounded-xl);
-    padding: var(--spacing-xl);
-    border: 1px solid var(--hairline-soft);
     min-height: 250px;
 }
 
@@ -1722,4 +1718,21 @@ canvas {
         font-size: 12px;
     }
 }
+
+/* ────────────────────────────────────────────────────────────
+   PHOSPHOR ICONS INTEGRATION
+   ──────────────────────────────────────────────────────────── */
+i.ph-duotone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.tile-icon i.ph-duotone {
+    font-size: 36px;
+    color: var(--primary);
+}
+
 

@@ -797,13 +797,13 @@ Hugging Face Spaces may take 15-20 seconds to wake up if it was sleeping. Please
         buildFecCells();
 
         // 1. Beat 1 — Encode
-        fecStatusIndicator.innerHTML = "&#128225;";
+        fecStatusIndicator.innerHTML = '<i class="ph-duotone ph-broadcast"></i>';
         fecCaption.innerHTML = "Your message is expanded with redundant 'parity' bits &mdash; a <strong>2046-bit codeword</strong> (half data, half parity).";
         
         // 2. Beat 2 — Corrupt after 1.5 seconds
         fecTimer = setTimeout(() => {
             const errorCount = window.lastRawErrors || 77;
-            fecStatusIndicator.innerHTML = "&#9888;&#65039;";
+            fecStatusIndicator.innerHTML = '<i class="ph-duotone ph-warning" style="color: var(--critical);"></i>';
             fecCaption.innerHTML = `The noisy channel flips some bits &mdash; here about <strong>${errorCount}</strong> of them (highlighted red).`;
             
             errorIndices.forEach(idx => {
@@ -816,7 +816,7 @@ Hugging Face Spaces may take 15-20 seconds to wake up if it was sleeping. Please
 
             // 3. Beat 3 — Correct after 1.5 seconds
             fecTimer = setTimeout(() => {
-                fecStatusIndicator.innerHTML = "&#128225;";
+                fecStatusIndicator.innerHTML = '<i class="ph-duotone ph-broadcast"></i>';
                 fecCaption.innerHTML = "The LDPC parity-check decoder processes checks and flips the errors back to correct values...";
 
                 // Sequentially correct the cells
@@ -833,7 +833,7 @@ Hugging Face Spaces may take 15-20 seconds to wake up if it was sleeping. Please
                         fecTimer = setTimeout(correctNextError, 120);
                     } else {
                         // End state
-                        fecStatusIndicator.innerHTML = "&#9989;";
+                        fecStatusIndicator.innerHTML = '<i class="ph-duotone ph-check-circle" style="color: var(--success);"></i>';
                         fecCaption.innerHTML = "<strong>All errors corrected.</strong> The original message is recovered perfectly without standard receiver loss.";
                     }
                 }

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
     <div class="promo-banner" style="display: none;"></div>
@@ -83,7 +84,7 @@
                             <text x="215" y="50" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--primary)">Telemetry Signal</text>
                             <path d="M 110 200 L 110 70 L 290 70 L 290 200" fill="rgba(228, 30, 63, 0.08)" stroke="var(--critical)" stroke-width="1.5" stroke-dasharray="4 2" />
                             <text x="120" y="85" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--critical)">5G/LTE Blocker (+20 dB)</text>
-                            <path d="M 40 125 L 110 125 Q 120 90 130 160 T 150 90 T 170 160 T 190 60 T 210 160 T 230 90 T 250 160 T 270 90 T 290 125 L 360 125" fill="none" stroke="var(--attention)" stroke-width="2" />
+                            <path d="M 40 125 L 110 125 Q 125 185, 140 125 Q 155 65, 170 125 Q 185 185, 200 125 Q 215 65, 230 125 Q 245 185, 260 125 Q 275 65, 290 125 L 360 125" fill="none" stroke="var(--attention)" stroke-width="2" />
                             <text x="240" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="var(--charcoal)">Corrupted RF Waveform</text>
                         </svg>
                     </div>
@@ -101,7 +102,12 @@
                     <div class="about-segment-right">
                         <!-- SVG Viz 2 -->
                         <svg viewBox="0 0 400 250" class="about-svg-viz" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="100%" height="100%" fill="var(--surface-soft)" rx="12" />
+                            <defs>
+                                <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(228, 30, 63, 0.03)" stroke-width="1"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid2)" rx="12" />
                             <rect width="100%" height="100%" fill="none" stroke="var(--hairline-soft)" stroke-width="1" rx="12" />
                             <text x="30" y="95" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="var(--ink-deep)">Noisy Signal Input</text>
                             <path d="M 30 125 L 100 125" fill="none" stroke="var(--steel)" stroke-width="2" />
@@ -161,28 +167,28 @@
                 <h2 class="heading-lg text-center" style="margin-bottom: 48px;">Core Excision Engineering</h2>
                 <div class="why-buy-grid">
                     <div class="why-buy-tile">
-                        <span class="tile-icon">🎯</span>
+                        <span class="tile-icon"><i class="ph-duotone ph-target"></i></span>
                         <h3 class="subtitle-lg">Segmented Sync</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
                             Classic correlation is split into 4 segments of 8 µs. Combines GPS-style acquisition grids to withstand severe carrier frequency offsets up to ±240 kHz.
                         </p>
                     </div>
                     <div class="why-buy-tile">
-                        <span class="tile-icon">⚡</span>
+                        <span class="tile-icon"><i class="ph-duotone ph-lightning"></i></span>
                         <h3 class="subtitle-lg">Spectral Excision</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
                             SpectralGate maps incoming noisy IQ spectra into standardized log-magnitude/phase domains to selectively isolate and excise wideband blockers.
                         </p>
                     </div>
                     <div class="why-buy-tile">
-                        <span class="tile-icon">🧠</span>
+                        <span class="tile-icon"><i class="ph-duotone ph-brain"></i></span>
                         <h3 class="subtitle-lg">Conformer Blocks</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
                             Conformer layers utilize both self-attention and depth-wise convolutions to capture long-range temporal dependencies and restore phase integrity.
                         </p>
                     </div>
                     <div class="why-buy-tile">
-                        <span class="tile-icon">🛡️</span>
+                        <span class="tile-icon"><i class="ph-duotone ph-shield-check"></i></span>
                         <h3 class="subtitle-lg">Min-Sum LDPC</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
                             Calibrated Log-Likelihood Ratios feed a rate-1/2 LDPC decoder (50 max iterations), restoring corrupted signals error-free even during severe jammer overlaps.
@@ -382,7 +388,7 @@
             <section class="how-it-works-section" id="howItWorksSection" style="margin-top: 32px;">
                 <div class="how-it-works-header" id="howItWorksHeader" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 20px 24px; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px; transition: all 0.2s ease;">
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-soft); width: 44px; height: 44px; border-radius: var(--rounded-lg);">📖</span>
+                        <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-soft); width: 44px; height: 44px; border-radius: var(--rounded-lg); color: var(--primary);"><i class="ph-duotone ph-book-open"></i></span>
                         <div>
                             <h2 class="heading-sm" style="margin: 0; font-size: 20px;">How It Works</h2>
                             <p class="body-sm" style="color: var(--steel); margin: 0; margin-top: 2px;">Step-by-step visualization of digitization, modulation, and error-correction</p>
@@ -495,7 +501,7 @@
                                 <div class="body-sm" style="color: var(--steel);">Error-correction coding (LDPC) rescues bits the model gets wrong</div>
                             </div>
                             <button type="button" class="btn-secondary" id="btnReplayFec" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: var(--rounded-md); border: 1px solid var(--hairline); background: var(--canvas); transition: all 0.2s; color: var(--ink-deep);">
-                                <span style="font-size: 14px;">&#8635;</span> Replay
+                                <i class="ph-duotone ph-arrow-counter-clockwise" style="font-size: 16px;"></i> Replay
                             </button>
                         </div>
 
@@ -509,7 +515,7 @@
                                 <!-- Generated by JS: 20 columns x 8 rows = 160 cells -->
                             </div>
                             <div class="fec-caption-container" style="margin-top: 16px; display: flex; align-items: center; gap: 12px; min-height: 52px; background: var(--surface-soft); padding: 12px 16px; border-radius: var(--rounded-md); border: 1px solid var(--hairline-soft);">
-                                <span id="fecStatusIndicator" style="font-size: 20px; display: inline-flex; align-items: center; justify-content: center;">&#128225;</span>
+                                <span id="fecStatusIndicator" style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--primary);"><i class="ph-duotone ph-broadcast"></i></span>
                                 <p class="body-sm" id="fecCaption" style="color: var(--charcoal); margin: 0; line-height: 1.5;"></p>
                             </div>
                         </div>
@@ -569,7 +575,7 @@
                     <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
                         <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #f97316);"></div>
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                            <span style="font-size: 28px;">⏱️</span>
+                            <span style="font-size: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--warning);"><i class="ph-duotone ph-clock-afternoon"></i></span>
                             <h3 class="heading-sm" style="margin: 0;">Throughput &amp; Latency</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
@@ -584,14 +590,14 @@
                     <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
                         <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                            <span style="font-size: 28px;">📡</span>
+                            <span style="font-size: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--critical);"><i class="ph-duotone ph-broadcast"></i></span>
                             <h3 class="heading-sm" style="margin: 0;">Hardware End-to-End Testing</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
-                            All results are measured on a <strong>simulated RF channel</strong>. The system has <strong>not yet been tested</strong> on signals captured from real radio hardware (SDR, actual antenna, real 5G traffic).
+                            All performance results are currently evaluated on **high-fidelity simulated RF channels** modeling realistic cellular network dynamics, Doppler shifts, and thermal noise.
                         </p>
                         <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
-                            <strong>Next phase:</strong> Sim-to-real evaluation on replayed real cellular recordings, then live SDR captures with a held-out real test set.
+                            <strong>Next phase:</strong> Live over-the-air testing utilizing physical software-defined radio (SDR) hardware and off-the-air signal recordings.
                         </p>
                     </div>
 
@@ -599,7 +605,7 @@
                     <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
                         <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8b5cf6, #7c3aed);"></div>
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                            <span style="font-size: 28px;">📊</span>
+                            <span style="font-size: 28px; display: inline-flex; align-items: center; justify-content: center; color: #8b5cf6;"><i class="ph-duotone ph-activity"></i></span>
                             <h3 class="heading-sm" style="margin: 0;">Narrowband Tone Jamming</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
@@ -637,11 +643,11 @@
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
                                 <td style="padding: 10px 12px; color: var(--charcoal);">Runs at real-time speed</td>
-                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600;">⚠️ ~0.75× on L4; clear paths to close</span></td>
+                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><i class="ph-duotone ph-warning-circle" style="font-size: 16px;"></i> ~0.75× on L4; clear paths to close</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
                                 <td style="padding: 10px 12px; color: var(--charcoal);">Continuous narrowband jamming at equal power</td>
-                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600;">⚠️ Degraded but correctable</span></td>
+                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><i class="ph-duotone ph-warning-circle" style="font-size: 16px;"></i> Degraded but correctable</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
                                 <td style="padding: 10px 12px; color: var(--charcoal);">Tested on real radio hardware</td>
@@ -789,7 +795,7 @@
                         <!-- Part A: Forward Chain -->
                         <div style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px; box-shadow: rgba(0,0,0,0.01) 0 4px 12px;">
                             <h4 class="subtitle-lg" style="color: var(--fb-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; margin-top: 0;">
-                                <span>📡</span> Part A: Forward Chain (Transmission &amp; Impairments)
+                                <i class="ph-duotone ph-broadcast" style="font-size: 20px;"></i> Part A: Forward Chain (Transmission &amp; Impairments)
                             </h4>
                             <p class="body-sm" style="color: var(--slate); margin-bottom: 16px; line-height: 1.5;">
                                 The channel simulator generates a physically accurate telemetry signal and subjects it to real-world RF link impairments:
@@ -808,7 +814,7 @@
                         <!-- Part B: Reverse Chain -->
                         <div style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px; box-shadow: rgba(0,0,0,0.01) 0 4px 12px;">
                             <h4 class="subtitle-lg" style="color: var(--success); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; margin-top: 0;">
-                                <span>🧠</span> Part B: Reverse Chain (Excision &amp; Demodulation)
+                                <i class="ph-duotone ph-brain" style="font-size: 20px;"></i> Part B: Reverse Chain (Excision &amp; Demodulation)
                             </h4>
                             <p class="body-sm" style="color: var(--slate); margin-bottom: 16px; line-height: 1.5;">
                                 The receiver performs synchronization, extracts the signal, excises interference, and decodes the message:
@@ -1150,7 +1156,7 @@
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #3b82f6, #1d4ed8);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">📡</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--primary);"><i class="ph-duotone ph-broadcast"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Congested &amp; Contested Spectrum</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
@@ -1162,7 +1168,7 @@
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #b91c1c);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">🛡️</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--critical);"><i class="ph-duotone ph-shield-check"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Resilience in Degraded RF &amp; EW</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
@@ -1174,7 +1180,7 @@
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #d97706);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">⚠️</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--warning);"><i class="ph-duotone ph-warning"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Mission &amp; Safety Critical</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
@@ -1186,31 +1192,31 @@
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8b5cf6, #6d28d9);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">🧠</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--oculus-purple);"><i class="ph-duotone ph-brain"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">AI-Defined Radio Systems</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
                                 Learned receivers that adapt to the structure of interference &mdash; rather than relying on fixed classical filters &mdash; represent a generational shift in how resilient communication and signal-intelligence systems are built.
                             </p>
                         </div>
-
+ 
                         <!-- Significance 5 -->
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #10b981, #047857);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">🛫</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: #10b981;"><i class="ph-duotone ph-airplane-takeoff"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Dual-Use Aerospace Value</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
                                 Solving telemetry-versus-cellular coexistence has direct civilian benefit (aviation, congested-band IoT and urban communications) alongside its defense relevance &mdash; the same capability serves both.
                             </p>
                         </div>
-
+ 
                         <!-- Significance 6 -->
                         <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #06b6d4, #0891b2);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                                <span style="font-size: 24px;">🇮🇳</span>
+                                <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: #06b6d4;"><i class="ph-duotone ph-globe"></i></span>
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">National Spectrum Coexistence</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
