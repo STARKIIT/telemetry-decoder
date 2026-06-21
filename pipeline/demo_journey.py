@@ -96,10 +96,18 @@ def _tx_rx_capture(payload_bits, mode, sjr_db, snr_db, rng, model, device, T):
     pred = (lg > 0).astype(np.uint8)
     llr_payload = np.clip(-lg[SYNC_LEN_BITS:] / T, -fec.LLR_CLIP, fec.LLR_CLIP)
 
+    # RECOVERED waveform for display: re-modulate the model's recovered bits
+    # back into a clean PCM-FM signal. (The raw x_recon branch is an auxiliary
+    # denoising target at tiny amplitude — visually a flat line — so we show
+    # the *information* recovery instead: the bits the model decoded, turned
+    # back into the signal they represent. This matches stage 1 when decoding
+    # is correct, which is the honest, legible story.)
+    recovered_wave = sf.pcmfm_iq(pred.astype(np.int64))[:SIG_LEN]
+
     cap = {"clean": sig[:SIG_LEN].astype(np.complex64),
            "interf": interf_frame.astype(np.complex64),
            "received": (x_rx[0] + 1j * x_rx[1]).astype(np.complex64),
-           "recon": (x_recon[0] + 1j * x_recon[1]).astype(np.complex64),
+           "recon": recovered_wave.astype(np.complex64),
            "psl": psl, "sync_err": int(abs(est - PAD))}
     return llr_payload.astype(np.float32), pred[SYNC_LEN_BITS:], cap
 
@@ -183,7 +191,8 @@ def _viz_journey(orig, recv, cap, raw_errs, pre_ber, ok, total_raw,
         ("1. Transmitted PCM-FM (clean)", cap["clean"], "#1f77b4"),
         ("2. Interference + noise hitting the signal", cap["interf"], "#d62728"),
         ("3. Received signal (corrupted)", cap["received"], "#7f4fa0"),
-        ("4. Model-reconstructed signal", cap["recon"], "#2ca02c"),
+        ("4. Recovered signal (regenerated from decoded bits)",
+         cap["recon"], "#2ca02c"),
     ]
     # left column: time domain
     for i, (title, x, col) in enumerate(stages):

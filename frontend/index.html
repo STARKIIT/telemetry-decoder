@@ -377,6 +377,108 @@
                 </p>
                 <div id="framesBitGridContainer"></div>
             </div>
+
+            <!-- Limitations & Open Challenges Section -->
+            <section class="limitations-section" id="limitationsSection" style="margin-top: 48px;">
+                <div class="limitations-header" style="text-align: center; margin-bottom: 32px;">
+                    <h2 class="heading-lg" style="margin-bottom: 8px;">Limitations &amp; Open Challenges</h2>
+                    <p class="body-md" style="color: var(--steel); max-width: 640px; margin: 0 auto;">
+                        This is a validated research prototype — not a fielded system. Here's an honest account of what it does <em>not</em> yet do.
+                    </p>
+                </div>
+
+                <div class="limitations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto;">
+
+                    <!-- Limitation 1: Latency -->
+                    <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #f97316);"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">⏱️</span>
+                            <h3 class="heading-sm" style="margin: 0;">Throughput &amp; Latency</h3>
+                        </div>
+                        <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
+                            The receiver currently runs at approximately <strong>0.75× real-time</strong> on an NVIDIA L4 GPU — it processes data slightly slower than it arrives. A deployed range receiver needs to sustain ~3,900 frames/second continuously.
+                        </p>
+                        <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
+                            <strong>Paths to close the gap:</strong> Better deployment hardware (A100/H100 + TensorRT), a hybrid classical/neural receiver, or a distilled smaller model.
+                        </p>
+                    </div>
+
+                    <!-- Limitation 2: Hardware Validation -->
+                    <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">📡</span>
+                            <h3 class="heading-sm" style="margin: 0;">Hardware End-to-End Testing</h3>
+                        </div>
+                        <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
+                            All results are measured on a <strong>simulated RF channel</strong>. The system has <strong>not yet been tested</strong> on signals captured from real radio hardware (SDR, actual antenna, real 5G traffic).
+                        </p>
+                        <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
+                            <strong>Next phase:</strong> Sim-to-real evaluation on replayed real cellular recordings, then live SDR captures with a held-out real test set.
+                        </p>
+                    </div>
+
+                    <!-- Limitation 3: Narrowband Jamming -->
+                    <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8b5cf6, #7c3aed);"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <span style="font-size: 28px;">📊</span>
+                            <h3 class="heading-sm" style="margin: 0;">Narrowband Tone Jamming</h3>
+                        </div>
+                        <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
+                            Continuous narrowband tones at equal power produce a higher raw BER (~2.5%). Error-correction still recovers the message, but the <strong>safety margin is thinner</strong> and could be exceeded under stronger jamming.
+                        </p>
+                        <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
+                            <strong>Planned fix:</strong> A larger multi-frame model that exploits temporal context across neighboring frames.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Honest Summary Table -->
+                <div style="max-width: 800px; margin: 40px auto 0 auto; background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px 28px; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                    <h3 class="heading-sm" style="margin-bottom: 16px; text-align: center;">Status Summary</h3>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--hairline-soft);">
+                                <th style="text-align: left; padding: 8px 12px; font-weight: 600; color: var(--ink-deep);">Capability</th>
+                                <th style="text-align: left; padding: 8px 12px; font-weight: 600; color: var(--ink-deep);">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Recovers telemetry under realistic 5G/LTE interference</td>
+                                <td style="padding: 10px 12px;"><span style="color: #16a34a; font-weight: 600;">✅ Demonstrated (simulation)</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Zero errors after correction, across tested range</td>
+                                <td style="padding: 10px 12px;"><span style="color: #16a34a; font-weight: 600;">✅ Demonstrated (simulation)</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">End-to-end validated (sync → model → FEC)</td>
+                                <td style="padding: 10px 12px;"><span style="color: #16a34a; font-weight: 600;">✅ Validated</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Runs at real-time speed</td>
+                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600;">⚠️ ~0.75× on L4; clear paths to close</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Continuous narrowband jamming at equal power</td>
+                                <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600;">⚠️ Degraded but correctable</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--hairline-soft);">
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Tested on real radio hardware</td>
+                                <td style="padding: 10px 12px;"><span style="color: #ef4444; font-weight: 600;">❌ Next phase</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Exact standardized FEC code</td>
+                                <td style="padding: 10px 12px;"><span style="color: #ef4444; font-weight: 600;">❌ Proxy used; swap pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div> <!-- End viewSim -->
 
         <!-- View 3: Tech Specs Page -->
