@@ -1002,8 +1002,232 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Link to More FAQs Subpage -->
+                <div style="text-align: center; margin-top: 32px;">
+                    <a href="#more-faqs" id="linkToMoreFaqs" style="font-weight: 700; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; transition: color 0.2s ease;">
+                        <span>📋</span> View More FAQs &amp; Project Significance &rarr;
+                    </a>
+                </div>
             </section>
         </div>
+
+        <!-- View 5: More FAQs & Significance Page -->
+        <div id="viewMoreFaqs" class="tab-view">
+            <section class="more-faqs-section" style="padding-top: 0; padding-bottom: 48px;">
+                <div style="margin-bottom: 24px;">
+                    <a href="#glossary" style="font-weight: 700; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px;">
+                        &larr; Back to Glossary &amp; FAQs
+                    </a>
+                </div>
+
+                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">More FAQs</h2>
+                <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
+                    Expanded questions and answers on neural receiver design, channel constraints, and implementation details.
+                </p>
+
+                <div class="faq-accordion" style="max-width: 800px; margin: 0 auto 64px auto;">
+                    <!-- FAQ 1 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">What is this project?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            A deep-learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">Why can't normal receivers do this?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            Classical receivers were designed to pull a signal out of weak, random background noise. 5G/LTE is the opposite: a strong, structured signal that overlaps yours in the same frequency band. Traditional methods can't separate two signals sharing a band — so they fail.
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">What does "the interference is stronger than the signal" mean?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            It's measured as signal-to-jammer ratio (SJR). At 0 dB the interference has equal power to the signal; at &minus;5 dB it's about three times stronger. Classical receivers break down well before that point — this system keeps working.
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">How accurate is it?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            The neural network alone recovers about 93% of frames perfectly. After error-correction coding, the message comes through with zero frame errors across the tested range — including when interference equals or exceeds signal power.
+                        </div>
+                    </div>
+                    <!-- FAQ 5 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">Is this tested on real radio hardware?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            Not yet. All results are on a physically-modeled, simulated RF channel. Real-hardware testing with software-defined radios is the next phase of the project. (We state this plainly — simulation results are a starting point, not a field-deployment claim.)
+                        </div>
+                    </div>
+                    <!-- FAQ 6 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">What's the hardest case it faces?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            Continuous narrowband jamming sitting directly on the carrier at equal power (like a continuous-wave jammer or strong spur). There the model leaves more errors, but error-correction still recovers the message — with a smaller safety margin than in other cases.
+                        </div>
+                    </div>
+                    <!-- FAQ 7 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">Does it run in real time?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            Currently about 0.75&times; real-time on a mid-tier GPU — slightly slower than data arrives. There are three clear paths to close the gap: better deployment hardware with proper optimization, a hybrid design that only engages the neural network when interference is detected, or a smaller distilled model.
+                        </div>
+                    </div>
+                    <!-- FAQ 8 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">What makes it novel?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            There is no published method that recovers telemetry bits when co-channel cellular interference is stronger than the signal. This system does — and it's validated end to end (synchronization, the model, and error correction working together), not just as a model in isolation.
+                        </div>
+                    </div>
+                    <!-- FAQ 9 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">How does the demo work?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            You type a message; it's encoded into a radio waveform, corrupted by simulated interference and noise, then recovered by the receiver. You watch the signal at every stage — clean, interfered, received, recovered — and see the message come back error-free after error correction.
+                        </div>
+                    </div>
+                    <!-- FAQ 10 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">What is PCM-FM telemetry?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            PCM-FM is the standard modulation (per the IRIG-106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
+                        </div>
+                    </div>
+                    <!-- FAQ 11 -->
+                    <div class="faq-accordion-item">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
+                            <span class="subtitle-lg" style="font-size: 16px;">Why deep learning instead of a classical filter?</span>
+                            <span class="faq-icon">▾</span>
+                        </div>
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                            A fixed filter can only remove interference whose shape you know in advance. A learned model adapts to the <em>structure</em> of real cellular interference — which varies with traffic, scheduling, and bandwidth — and separates it from the telemetry signal, something a static filter cannot do.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px dashed var(--hairline); padding-top: 48px; margin-top: 48px;">
+                    <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Why This Matters: Significance &amp; Motivation</h2>
+                    <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
+                        Resilience under interference is a critical requirement in modern defense-sponsored and civilian communications.
+                    </p>
+                    
+                    <div class="limitations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto 48px auto;">
+                        <!-- Significance 1 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #3b82f6, #1d4ed8);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">📡</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Congested &amp; Contested Spectrum</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                Defense and flight-test telemetry increasingly shares frequency bands with commercial 5G and LTE. Reliable data recovery under co-channel interference has become a baseline requirement, not a rare edge case.
+                            </p>
+                        </div>
+                        
+                        <!-- Significance 2 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #b91c1c);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">🛡️</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Resilience in Degraded RF &amp; EW</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                The ability to recover a signal when something stronger is sitting on top of it is foundational to operating in crowded or contested spectrum &mdash; a central concern of modern, electronic-warfare-aware system design.
+                            </p>
+                        </div>
+                        
+                        <!-- Significance 3 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #d97706);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">⚠️</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Mission &amp; Safety Critical</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                Flight-test and range telemetry carries safety-of-flight and mission-critical information. Losing frames to interference is not an inconvenience &mdash; it is a critical data-integrity and aerospace safety problem.
+                            </p>
+                        </div>
+                        
+                        <!-- Significance 4 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8b5cf6, #6d28d9);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">🧠</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">AI-Defined Radio Systems</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                Learned receivers that adapt to the structure of interference &mdash; rather than relying on fixed classical filters &mdash; represent a generational shift in how resilient communication and signal-intelligence systems are built.
+                            </p>
+                        </div>
+
+                        <!-- Significance 5 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #10b981, #047857);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">🛫</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Dual-Use Aerospace Value</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                Solving telemetry-versus-cellular coexistence has direct civilian benefit (aviation, congested-band IoT and urban communications) alongside its defense relevance &mdash; the same capability serves both.
+                            </p>
+                        </div>
+
+                        <!-- Significance 6 -->
+                        <div class="limitation-card" style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 28px 24px; position: relative; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #06b6d4, #0891b2);"></div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                <span style="font-size: 24px;">🇮🇳</span>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">National Spectrum Coexistence</h3>
+                            </div>
+                            <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
+                                As more services compete for the same bands, the capacity to extract a wanted signal from a crowded, overlapping RF environment is increasingly strategic &mdash; for safety, for communications reliability, and for situational awareness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 32px;">
+                    <a href="#glossary" style="font-weight: 700; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px;">
+                        &larr; Back to Glossary &amp; FAQs
+                    </a>
+                </div>
+            </section>
+        </div>
+
     </main>
 
     <!-- Footer -->

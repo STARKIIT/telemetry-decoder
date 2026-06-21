@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewSim = document.getElementById("viewSim");
     const viewSpecs = document.getElementById("viewSpecs");
     const viewGlossary = document.getElementById("viewGlossary");
+    const viewMoreFaqs = document.getElementById("viewMoreFaqs");
 
     // Dynamic API Endpoint Determination
     // If running on local webserver, call localhost backend. If deployed, call the relative API.
@@ -52,7 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         home: { view: viewHome, nav: navHome },
         sim: { view: viewSim, nav: navSim },
         specs: { view: viewSpecs, nav: navSpecs },
-        glossary: { view: viewGlossary, nav: navGlossary }
+        glossary: { view: viewGlossary, nav: navGlossary },
+        "more-faqs": { view: viewMoreFaqs, nav: null }
     };
 
     function showView(targetId, updateHash = true) {
@@ -60,10 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const item = views[key];
             if (key === targetId) {
                 item.view.classList.add("active-view");
-                item.nav.classList.add("active");
+                if (item.nav) item.nav.classList.add("active");
             } else {
                 item.view.classList.remove("active-view");
-                item.nav.classList.remove("active");
+                if (item.nav) item.nav.classList.remove("active");
             }
         });
         if (updateHash) {
