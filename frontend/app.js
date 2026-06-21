@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dynamic API Endpoint Determination
     // If running on local webserver, call localhost backend. If deployed, call the relative API.
-    const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" 
-        ? "http://127.0.0.1:7860" 
-        : ""; 
+    const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+        ? "http://127.0.0.1:7860"
+        : "https://starkiit-telemetry-decoder-api.hf.space";
 
     let selectedInterference = "wideband";
 
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.strokeStyle = "#dee3e9";
         ctx.lineWidth = 1;
         ctx.setLineDash([2, 4]);
-        
+
         // Horizontal lines
         for (let y = 25; y < H; y += 25) {
             ctx.beginPath();
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.lineTo(W, y);
             ctx.stroke();
         }
-        
+
         // Zero line
         ctx.strokeStyle = "#bcc0c4";
         ctx.setLineDash([]);
@@ -260,11 +260,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!freqMhz || freqMhz.length === 0) return;
 
         const scaleX = W / freqMhz.length;
-        
+
         ctx.strokeStyle = colorHex;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
-        
+
         const mapY = (db) => {
             const val = H - ((db - minDb) / dbRange) * H;
             return Math.max(0, Math.min(H, val));
