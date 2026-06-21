@@ -439,14 +439,18 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="comparison-column">
         <div class="comparison-label">Traditional Decoder (No Excision)</div>
         <div class="comparison-box traditional" style="padding: 16px; border: 1px solid #f8b4b4; background: #fdf2f2; border-radius: var(--rounded-lg);">
-            <div style="font-size: 12px; color: #991b1b; margin-bottom: 10px; opacity: 0.9; font-family: monospace;">
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif; opacity: 0.75;">Pre-FEC (Classical)</div>
-                <span style="opacity: 0.8;">"${traditionalOutput}"</span>
-            </div>
             <div style="background: #ffffff; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 12px; box-shadow: 0 2px 4px rgba(185, 28, 28, 0.05);">
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Post-FEC (Classical, Failed)</div>
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 6px; font-family: sans-serif;">Post-FEC (Classical, Failed)</div>
                 <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalPostFec}"</div>
             </div>
+            <details style="margin-top: 10px;">
+                <summary style="font-size: 11.5px; color: #991b1b; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 4px 0;">
+                    <span style="font-size: 10px;">▾</span> Show intermediate output
+                </summary>
+                <div style="margin-top: 8px; font-size: 11.5px; color: #991b1b; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(185,28,28,0.04); border-radius: var(--rounded-sm); border: 1px dashed #fca5a5;">
+                    <strong>Pre-FEC (Classical):</strong> "${traditionalOutput}"
+                </div>
+            </details>
             <div style="margin-top: 10px; font-size: 11px; color: #991b1b; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
                 <span>⚠</span> Cannot recover — too many errors for FEC to correct
             </div>
