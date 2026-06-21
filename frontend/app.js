@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewSpecs = document.getElementById("viewSpecs");
     const viewGlossary = document.getElementById("viewGlossary");
     const viewMoreFaqs = document.getElementById("viewMoreFaqs");
+    const viewContact = document.getElementById("viewContact");
 
     // Dynamic API Endpoint Determination
     // If running on local webserver, call localhost backend. If deployed, call the relative API.
@@ -54,7 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sim: { view: viewSim, nav: navSim },
         specs: { view: viewSpecs, nav: navSpecs },
         glossary: { view: viewGlossary, nav: navGlossary },
-        "more-faqs": { view: viewMoreFaqs, nav: null }
+        "more-faqs": { view: viewMoreFaqs, nav: null },
+        contact: { view: viewContact, nav: null }
     };
 
     function showView(targetId, updateHash = true) {
@@ -81,6 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
     btnLaunchSim.addEventListener("click", () => showView("sim"));
     if (btnGoToGlossary) {
         btnGoToGlossary.addEventListener("click", () => showView("glossary"));
+    }
+    const footerContactLink = document.getElementById("footerContactLink");
+    if (footerContactLink) {
+        footerContactLink.addEventListener("click", (e) => { e.preventDefault(); showView("contact"); });
+    }
+    const contactBackLink = document.getElementById("contactBackLink");
+    if (contactBackLink) {
+        contactBackLink.addEventListener("click", (e) => { e.preventDefault(); showView("home"); });
     }
 
     // Hash routing initialization
