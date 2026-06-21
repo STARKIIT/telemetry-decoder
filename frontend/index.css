@@ -837,7 +837,7 @@ canvas {
 
 .footer-grid {
     max-width: 1280px;
-    margin: 0 auto var(--spacing-xxl) auto;
+    margin: 0 auto var(--spacing-xl) auto;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--spacing-xxl);
@@ -881,6 +881,7 @@ canvas {
 }
 
 .caption-link {
+    font-size: 11px;
     color: var(--stone);
     text-decoration: none;
 }
