@@ -35,7 +35,7 @@
                 <button class="pill-tab active" id="navHome">About</button>
                 <button class="pill-tab" id="navSim">Live Sim</button>
                 <button class="pill-tab" id="navSpecs">Tech Specs</button>
-                <button class="pill-tab" id="navFaq">FAQ</button>
+                <button class="pill-tab" id="navGlossary">Glossary &amp; FAQ</button>
             </div>
             <div class="nav-right">
                 <a href="https://colab.research.google.com/drive/1ZEW-pqHqryTzOVLd6hHcoerxMyWNHprd?usp=sharing" target="_blank" rel="noopener noreferrer" class="colab-link-btn">
@@ -481,16 +481,15 @@
             </section>
         </div> <!-- End viewSim -->
 
-        <!-- View 3: Tech Specs Page -->
         <div id="viewSpecs" class="tab-view">
             <section class="specs-section" id="specs-section" style="padding-top: 0;">
-                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Technical Architecture</h2>
+                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Technical Architecture &amp; Signal Chain</h2>
                 <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 32px auto;">
-                    Inside the receiver chain. The Conformer-based pipeline replaces traditional FIR filters and threshold decoders.
+                    Detailed trace of the telemetry receiver chain. The Conformer-based pipeline replaces traditional FIR filters and threshold decoders.
                 </p>
 
                 <!-- Horizontal Model Architecture Pipeline Flow -->
-                <div class="tech-specs-diagram-container" style="margin: 0 auto 48px auto; max-width: 1000px; overflow-x: auto; background-color: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: var(--spacing-xl); box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                <div class="tech-specs-diagram-container" style="margin: 0 auto 32px auto; max-width: 1000px; overflow-x: auto; background-color: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: var(--spacing-xl); box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
                     <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">Step-by-Step Model Architecture Pipeline</h3>
                     <svg class="specs-pipeline-svg" viewBox="0 0 1000 130" width="100%" height="auto" style="min-width: 900px; display: block; margin: 0 auto;">
                         <defs>
@@ -596,9 +595,65 @@
                     </svg>
                 </div>
 
-                <div class="tech-specs-table">
+                <!-- 3D Model Architecture Visual Representation -->
+                <div class="tech-specs-3d-model-container" style="margin: 0 auto 48px auto; max-width: 1000px; text-align: center; background-color: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: var(--spacing-xl); box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
+                    <h3 class="heading-sm" style="margin-top: 0; margin-bottom: 16px; color: var(--ink-deep);">3D Neural Receiver Architecture Model</h3>
+                    <div style="max-width: 750px; margin: 0 auto; border: 1px solid var(--hairline-soft); border-radius: var(--rounded-lg); overflow: hidden; box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 24px;">
+                        <img src="model_architecture_3d.png" alt="3D Model Architecture" style="width: 100%; height: auto; display: block;" />
+                    </div>
+                    <p class="caption" style="color: var(--steel); margin-top: 12px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+                        Visual model design: <strong>SpectralGate</strong> applies learned soft-frequency excision to remove 5G/LTE blockers, the convolutional <strong>U-Net Denoiser</strong> performs time-domain waveform recovery, and the <strong>Conformer Stack</strong> decodes temporal bit sequences.
+                    </p>
+                </div>
+
+                <!-- Detailed Signal Chain Steps (from signal_chain_detailed.md) -->
+                <div class="detailed-chain-container" style="max-width: 1000px; margin: 0 auto 48px auto;">
+                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">End-to-End Signal Chain Detail</h3>
+                    <div class="chain-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                        <!-- Part A: Forward Chain -->
+                        <div style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px; box-shadow: rgba(0,0,0,0.01) 0 4px 12px;">
+                            <h4 class="subtitle-lg" style="color: var(--fb-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                                <span>📡</span> Part A: Forward Chain (Transmission &amp; Impairments)
+                            </h4>
+                            <p class="body-sm" style="color: var(--slate); margin-bottom: 16px; line-height: 1.5;">
+                                The channel simulator generates a physically accurate telemetry signal and subjects it to real-world RF link impairments:
+                            </p>
+                            <ol style="padding-left: 20px; font-size: 13px; line-height: 1.6; color: var(--charcoal); display: flex; flex-direction: column; gap: 12px; margin: 0;">
+                                <li><strong>Digital Bits to NRZ:</strong> 256 bits map to bipolar NRZ symbols (0 &rarr; -1, 1 &rarr; +1) at 10 samples per bit (1 Mbps over 10 MHz), producing a 2560-sample baseband stream.</li>
+                                <li><strong>Gaussian Pulse Shaping:</strong> The NRZ signal is shaped via a Gaussian filter (BT=0.5, &sigma;&approx;2.65 samples) to smooth transitions and restrict the spectrum.</li>
+                                <li><strong>FM Modulation (Digital &rarr; IQ):</strong> The shaped baseband signal shifts carrier frequency by &plusmn;350 kHz. Phase integration yields <code>exp(j&middot;&phi;(t))</code>, a constant-envelope complex IQ waveform.</li>
+                                <li><strong>Oscillator &amp; Motion Drift:</strong> Random-walk Wiener phase noise (5-200 Hz linewidth) and Doppler shift (&plusmn;25 kHz) model hardware drift and vehicle velocity.</li>
+                                <li><strong>Cellular Co-Channel interference:</strong> CP-OFDM LTE and 5G NR (256-QAM) blockers are generated and summed directly onto the telemetry band.</li>
+                                <li><strong>LNA Saturation:</strong> Under high interference, the receiver's Low-Noise Amplifier saturates, compressing amplitudes and generating third-order IM3 intermod products.</li>
+                                <li><strong>Gain Scaling &amp; Noise:</strong> An Automatic Gain Control loop normalizes power to -10 dBm. Finally, AWGN is added for the target SNR.</li>
+                            </ol>
+                        </div>
+                        
+                        <!-- Part B: Reverse Chain -->
+                        <div style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px; box-shadow: rgba(0,0,0,0.01) 0 4px 12px;">
+                            <h4 class="subtitle-lg" style="color: var(--success); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; margin-top: 0;">
+                                <span>🧠</span> Part B: Reverse Chain (Excision &amp; Demodulation)
+                            </h4>
+                            <p class="body-sm" style="color: var(--slate); margin-bottom: 16px; line-height: 1.5;">
+                                The receiver performs synchronization, extracts the signal, excises interference, and decodes the message:
+                            </p>
+                            <ol style="padding-left: 20px; font-size: 13px; line-height: 1.6; color: var(--charcoal); display: flex; flex-direction: column; gap: 12px; margin: 0;">
+                                <li><strong>Frame Synchronization:</strong> A segmented correlation bank searches over Time-Lag &times; CFO to lock on the 320-sample sync word pattern (Lock threshold PSL &ge; 1.5).</li>
+                                <li><strong>CFO Derotation &amp; Scaling:</strong> Sliced 2560-sample frames are derotated to remove CFO, and gain is scaled back to -10 dBm to satisfy the model's amplitude constraints.</li>
+                                <li><strong>Spectral Excision (SpectralGate):</strong> Fast Fourier Transform (FFT) vectors enter the model, where the SpectralGate applies dynamic frequency-domain masking.</li>
+                                <li><strong>CNN &amp; Conformer Layers:</strong> The U-Net denoiser extracts clean phase features, and 4 Conformer blocks model long-range temporal bit dependencies, outputting 256 bit logits.</li>
+                                <li><strong>LLR Calibration:</strong> Raw focal-loss logits are temperature-calibrated (T &approx; 0.55) to output honest Log-Likelihood Ratios (LLRs).</li>
+                                <li><strong>LDPC Belief Propagation:</strong> Codewords spanning 10 frames are checked iteratively (Min-Sum decoder, 50 max iterations) to locate and correct remaining bit flips.</li>
+                                <li><strong>Descrambling to ASCII:</strong> Corrected bits are descrambled via an LFSR keystream XOR, grouped into bytes, and converted to ASCII characters to yield the final text.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parameters Table & Model Specifications -->
+                <div class="tech-specs-table" style="margin-bottom: 32px;">
                     <div class="specs-row header">
-                        <div class="specs-label heading-sm" style="margin:0;">System Parameter</div>
+                        <div class="specs-label heading-sm" style="margin:0;">System Parameter / Dimension</div>
                         <div class="specs-value heading-sm" style="margin:0;">Specification / Value</div>
                     </div>
                     <div class="specs-row">
@@ -606,99 +661,167 @@
                         <div class="specs-value body-sm">1 Mbps Bitrate, Peak Deviation (fd) = 350 kHz (h=0.7), BT=0.5, Sampling = 10 MHz</div>
                     </div>
                     <div class="specs-row">
-                        <div class="specs-label body-sm-bold">Frame Synchronization Word</div>
-                        <div class="specs-value body-sm">32-bit IRIG-106 pattern <code>0xFE6B2840</code> (coarse CFO removal via correlation segmentation)</div>
+                        <div class="specs-label body-sm-bold">Frame Sync Word</div>
+                        <div class="specs-value body-sm">32-bit IRIG-106 pattern <code>0xFE6B2840</code> (CFO removal segment correlation)</div>
                     </div>
                     <div class="specs-row">
-                        <div class="specs-label body-sm-bold">Excision Model Architecture</div>
-                        <div class="specs-value body-sm">TelemetryPipelineV8 Conformer (SpectralGate block + CNN + 4 Conformer blocks, 192 features)</div>
+                        <div class="specs-label body-sm-bold">SpectralGate Masking</div>
+                        <div class="specs-value body-sm">FFT-based soft-excision layer, thresholding high-power co-channel blockers</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">UNet Wave Denoiser</div>
+                        <div class="specs-value body-sm">SE-ResBlock encoder/decoder with skips, mapping noisy IQ signals to clean templates</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Conformer Network Stack</div>
+                        <div class="specs-value body-sm">4 blocks, Model dimension = 192, Attention Heads = 4, Conv Kernel = 15, Dropout = 0.1</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Total Model Parameters</div>
+                        <div class="specs-value body-sm">6.07 Million (Parameters weight trained with Focal Loss and AdamW)</div>
+                    </div>
+                    <div class="specs-row">
+                        <div class="specs-label body-sm-bold">Soft-Output Calibration</div>
+                        <div class="specs-value body-sm">Temperature Scaling (T &approx; 0.55), converting logits into calibrated LLRs (ECE &approx; 1e-4)</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">Forward Error Correction</div>
-                        <div class="specs-value body-sm">Rate-1/2 Proxy LDPC Code (n=2046, k=1025) with Vectorized Normalized Min-Sum Decoder</div>
+                        <div class="specs-value body-sm">Rate-1/2 LDPC Code (n=2046, k=1025) with Vectorized Normalized Min-Sum Decoder (50 iter, &alpha;=0.75)</div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Glossary Section -->
-            <section class="glossary-section">
-                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Technical Glossary</h2>
-                <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
-                    Deep dive into the signals, networks, and DSP algorithms powering the receiver.
-                </p>
-                <div class="glossary-grid">
-                    <div class="glossary-item">
-                        <div class="glossary-term">PCM-FM Modulation</div>
-                        <div class="glossary-def">
-                            Pulse Code Modulation - Frequency Modulation. The standard flight telemetry modulation format (defined in IRIG-106 Chapter 4) where bits modulate carrier frequency offsets.
-                        </div>
-                    </div>
-                    <div class="glossary-item">
-                        <div class="glossary-term">Conformer (v8.5)</div>
-                        <div class="glossary-def">
-                            A neural network combining Convolution layers (learning local wave shapes/phases) and Transformers (learning long-range temporal dependencies) for advanced signal recovery.
-                        </div>
-                    </div>
-                    <div class="glossary-item">
-                        <div class="glossary-term">LDPC Error Correction</div>
-                        <div class="glossary-def">
-                            Low-Density Parity-Check code. A highly efficient linear block error-correction code matching Shannon limit. Resolves residual bit flips post-Conformer to guarantee zero errors.
-                        </div>
-                    </div>
-                    <div class="glossary-item">
-                        <div class="glossary-term">CFO Calibration</div>
-                        <div class="glossary-def">
-                            Carrier Frequency Offset calibration. Segmented correlation locks onto sync word components (FSW) to offset Doppler shifts up to ±240 kHz.
-                        </div>
-                    </div>
-                    <div class="glossary-item">
-                        <div class="glossary-term">LLR Log-Likelihoods</div>
-                        <div class="glossary-def">
-                            The log-probability indicators for decoded bit options. Logits out of Conformer layers are temperature-calibrated before min-sum parity checks.
-                        </div>
-                    </div>
-                    <div class="glossary-item">
-                        <div class="glossary-term">PSL Sync Metric</div>
-                        <div class="glossary-def">
-                            Peak Sidelobe Level metric of sync word correlation. A threshold &ge; 1.5 defines a secure lock. Anything below denotes signal alignment failure.
-                        </div>
-                    </div>
+                <!-- Call to action button to glossary -->
+                <div style="text-align: center; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-base);">
+                    <button type="button" class="button-simulate-cta" id="btnGoToGlossary" style="background-color: var(--primary); padding: 12px 28px; border: none; font-size: 13.5px; border-radius: var(--rounded-md); font-weight: bold; cursor: pointer; color: white;">
+                        View Detailed Glossary &amp; FAQs &rarr;
+                    </button>
                 </div>
             </section>
         </div>
 
-        <!-- View 4: FAQ Page -->
-        <div id="viewFaq" class="tab-view">
-            <section class="faq-section" id="faq-section" style="padding-top: 0;">
+        <!-- View 4: Glossary & FAQ Page -->
+        <div id="viewGlossary" class="tab-view">
+            <!-- Detailed Technical Glossary -->
+            <section class="glossary-section" style="padding-top: 0; padding-bottom: 24px;">
+                <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Detailed Technical Glossary</h2>
+                <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
+                    A comprehensive dictionary of terms, layers, and metrics in the neural telemetry link.
+                </p>
+                <div class="glossary-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">RF (Radio Frequency)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High-frequency electromagnetic waves used to transmit flight data wirelessly.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">IQ (In-Phase / Quadrature)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Complex representation of a signal split into real (I) and imaginary (Q) components.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">PCM-FM (Pulse Code Modulation - FM)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Telemetry standard (IRIG-106) where digital bits modulate carrier frequency offsets.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">FSW (Frame Synchronization Word)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">A unique 32-bit marker (<code>0xFE6B2840</code>) prepended to frames to lock alignment.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">CFO (Carrier Frequency Offset)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency misalignment between local and remote oscillators due to drift or Doppler.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SJR (Signal-to-Jammer Ratio)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Power ratio between the telemetry signal and co-channel cellular interference (dB).</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SNR (Signal-to-Noise Ratio)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Power ratio between the telemetry signal and static background thermal noise (dB).</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">AWGN (Additive White Gaussian Noise)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Mathematical noise model representing random thermal static in electrical channels.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LNA (Low-Noise Amplifier)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">First-stage receiver amplifier; operates in compression (acting as a limiter) under jamming.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">AGC (Automatic Gain Control)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Feedback loop that normalizes the received signal power before feeding it to the model.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Spectral Excision</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency-domain filtering that selectively zeroes out narrow/wideband interference peaks.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SpectralGate Layer</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">FFT-based learned dynamic frequency mask to excise cellular blockers.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">U-Net Denoiser</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">An encoder-decoder network with skip connections to reconstruct clean baseband waveforms.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Conformer Stack</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Four attention+convolution layers that perform temporal modeling and decode bit sequences.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Logit</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Raw, unscaled real-valued outputs from the neural network representing bit confidence.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LLR (Log-Likelihood Ratio)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Temperature-calibrated soft probability values used directly by the LDPC decoder.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">FEC (Forward Error Correction)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Redundant data encoding that allows the receiver to detect and correct bit errors.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LDPC (Low-Density Parity-Check)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High-efficiency linear error-correcting block code used to fix residual bit errors.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Min-Sum Algorithm</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">An iterative parity-check verification algorithm used to decode LDPC codewords.</div>
+                    </div>
+                    <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">BER (Bit Error Rate)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">The percentage of erroneous bits out of the total received bits.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQs Section directly connected after scrolling -->
+            <section class="faq-section" id="faq-section" style="padding-top: 48px; border-top: 1px solid var(--hairline-soft); margin-top: 48px;">
                 <h2 class="heading-lg text-center" style="margin-bottom: 48px;">Frequently Asked Questions</h2>
-                <div class="faq-accordion">
+                <div class="faq-accordion" style="max-width: 800px; margin: 0 auto 48px auto;">
                     <!-- FAQ Item 1 -->
                     <div class="faq-accordion-item">
-                        <div class="faq-question">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
                             <span class="subtitle-lg">How does the model handle out-of-distribution (OOD) interference?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
                             The excision engine utilizes domain randomization during training (v17 generator). It trains on dynamic wideband OFDM, multi-tone jammers, Swept chirps, and pulsed noise. This ensures the Conformer generalizes across standard LTE and 5G interference layers without crashing.
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
                     <div class="faq-accordion-item">
-                        <div class="faq-question">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
                             <span class="subtitle-lg">Why is LLR calibration needed before LDPC decoding?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
                             Conformer output logits are computed using focal-loss gradients, which typical mis-calibrates probability outputs. By fitting a temperature scaling parameter <code>T</code> on the validation set, we restore honest, calibrated Log-Likelihood Ratios necessary for optimal min-sum LDPC checks.
                         </div>
                     </div>
                     <!-- FAQ Item 3 -->
                     <div class="faq-accordion-item">
-                        <div class="faq-question">
+                        <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
                             <span class="subtitle-lg">Does this run locally in the browser or on the server?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
                             The signal processing and conformer inference are executed server-side (Hugging Face Spaces) in Python for numerical accuracy. Downsampled wave structures are then pushed via JSON to the browser client, which plots them using lightweight HTML5 canvas engines.
                         </div>
                     </div>

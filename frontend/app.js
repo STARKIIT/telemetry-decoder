@@ -28,13 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const navHome = document.getElementById("navHome");
     const navSim = document.getElementById("navSim");
     const navSpecs = document.getElementById("navSpecs");
-    const navFaq = document.getElementById("navFaq");
+    const navGlossary = document.getElementById("navGlossary");
     const btnLaunchSim = document.getElementById("btnLaunchSim");
+    const btnGoToGlossary = document.getElementById("btnGoToGlossary");
 
     const viewHome = document.getElementById("viewHome");
     const viewSim = document.getElementById("viewSim");
     const viewSpecs = document.getElementById("viewSpecs");
-    const viewFaq = document.getElementById("viewFaq");
+    const viewGlossary = document.getElementById("viewGlossary");
 
     // Dynamic API Endpoint Determination
     // If running on local webserver, call localhost backend. If deployed, call the relative API.
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         home: { view: viewHome, nav: navHome },
         sim: { view: viewSim, nav: navSim },
         specs: { view: viewSpecs, nav: navSpecs },
-        faq: { view: viewFaq, nav: navFaq }
+        glossary: { view: viewGlossary, nav: navGlossary }
     };
 
     function showView(targetId, updateHash = true) {
@@ -74,8 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
     navHome.addEventListener("click", () => showView("home"));
     navSim.addEventListener("click", () => showView("sim"));
     navSpecs.addEventListener("click", () => showView("specs"));
-    navFaq.addEventListener("click", () => showView("faq"));
+    navGlossary.addEventListener("click", () => showView("glossary"));
     btnLaunchSim.addEventListener("click", () => showView("sim"));
+    if (btnGoToGlossary) {
+        btnGoToGlossary.addEventListener("click", () => showView("glossary"));
+    }
 
     // Hash routing initialization
     window.addEventListener("hashchange", () => {
@@ -391,16 +395,26 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="comparison-container">
     <div class="comparison-column">
         <div class="comparison-label">Deep Conformer Model (Ours)</div>
-        <div class="comparison-box our-model">
-            <div><strong>Raw Model (Pre-FEC):</strong> "${data.recovered_pre_fec}"</div>
-            <div style="margin-top: 6px;"><strong>Final Recovered (Post-FEC):</strong> "${data.recovered_post_fec}"</div>
+        <div class="comparison-box our-model" style="padding: 16px; border: 1px solid #bbf7d0; background: #edfdf1; border-radius: var(--rounded-lg);">
+            <div style="font-size: 12px; color: #166534; margin-bottom: 8px; opacity: 0.95; font-family: monospace;">
+                <strong>Raw Model (Pre-FEC):</strong> "${data.recovered_pre_fec}"
+            </div>
+            <div style="background: #ffffff; border: 1px solid #86efac; border-radius: var(--rounded-md); padding: 12px; margin-top: 10px; box-shadow: 0 2px 4px rgba(21, 128, 61, 0.05);">
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #166534; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Final Recovered (Post-FEC)</div>
+                <div style="font-size: 16px; font-weight: 800; color: #15803d; font-family: monospace; word-break: break-word;">"${data.recovered_post_fec}"</div>
+            </div>
         </div>
     </div>
     <div class="comparison-column">
         <div class="comparison-label">Traditional Decoder (No Excision)</div>
-        <div class="comparison-box traditional">
-            <div><strong>Final Recovered:</strong> "${traditionalOutput}"</div>
-            <div style="margin-top: 6px; font-size: 11px; opacity: 0.85;">Status: Jammed / Correlation loss</div>
+        <div class="comparison-box traditional" style="padding: 16px; border: 1px solid #f8b4b4; background: #fdf2f2; border-radius: var(--rounded-lg);">
+            <div style="font-size: 12px; color: #991b1b; margin-bottom: 8px; opacity: 0.95; font-family: monospace;">
+                <strong>Status:</strong> Jammed / Correlation loss
+            </div>
+            <div style="background: #ffffff; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 12px; margin-top: 10px; box-shadow: 0 2px 4px rgba(185, 28, 28, 0.05);">
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Final Recovered</div>
+                <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalOutput}"</div>
+            </div>
         </div>
     </div>
 </div>
