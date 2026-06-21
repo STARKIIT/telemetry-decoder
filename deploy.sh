@@ -46,6 +46,7 @@ cp server/app.py "$DEPLOY_DIR/"
 cp server/Dockerfile "$DEPLOY_DIR/"
 cp server_reference/requirements.txt "$DEPLOY_DIR/"
 cp -R pipeline "$DEPLOY_DIR/"
+rm -f "$DEPLOY_DIR/pipeline/"*.png
 
 # Navigate to deploy directory
 cd "$DEPLOY_DIR" || exit
