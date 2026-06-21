@@ -48,6 +48,22 @@ cp server_reference/requirements.txt "$DEPLOY_DIR/"
 cp -R pipeline "$DEPLOY_DIR/"
 rm -f "$DEPLOY_DIR/pipeline/"*.png
 
+# Generate Hugging Face Space metadata README
+cat << 'EOF' > "$DEPLOY_DIR/README.md"
+---
+title: Telemetry Decoder API
+emoji: 📡
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
+# Telemetry Decoder API Space
+FastAPI backend service and Conformer neural network model running in Docker.
+EOF
+
 # Navigate to deploy directory
 cd "$DEPLOY_DIR" || exit
 
