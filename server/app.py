@@ -55,6 +55,17 @@ FS = dj.FS
 PAYLOAD_BITS = fec.PAYLOAD_BITS
 CODE_N, CODE_K = fec.CODE_N, fec.CODE_K
 
+# ────────────────────────────────────────────────────────────
+# RUNTIME PATH PATCHING
+# Override the Colab Google Drive path dynamically in memory!
+# ────────────────────────────────────────────────────────────
+LOCAL_CHECKPOINT = os.path.join(PIPELINE, "telemetry_v8_5.pth")
+if os.path.exists(LOCAL_CHECKPOINT):
+    fec.CHECKPOINT = LOCAL_CHECKPOINT
+    print(f"[runtime-patch] Redirected fec.CHECKPOINT to local file: {LOCAL_CHECKPOINT}")
+else:
+    print(f"[runtime-patch] Warning: Local checkpoint telemetry_v8_5.pth not found in {PIPELINE}")
+
 DEFAULT_T = float(os.environ.get("LLR_TEMPERATURE", fec.TEMPERATURE))
 
 INTERFERENCE_MODES = {"none", "v16_tones", "wideband", "tones_cont"}
