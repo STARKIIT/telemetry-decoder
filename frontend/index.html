@@ -977,7 +977,7 @@
                             <span class="subtitle-lg">How does the model handle out-of-distribution (OOD) interference?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             The excision engine utilizes domain randomization during training (v17 generator). It trains on dynamic wideband OFDM, multi-tone jammers, Swept chirps, and pulsed noise. This ensures the Conformer generalizes across standard LTE and 5G interference layers without crashing.
                         </div>
                     </div>
@@ -987,7 +987,7 @@
                             <span class="subtitle-lg">Why is LLR calibration needed before LDPC decoding?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             Conformer output logits are computed using focal-loss gradients, which typical mis-calibrates probability outputs. By fitting a temperature scaling parameter <code>T</code> on the validation set, we restore honest, calibrated Log-Likelihood Ratios necessary for optimal min-sum LDPC checks.
                         </div>
                     </div>
@@ -997,7 +997,7 @@
                             <span class="subtitle-lg">Does this run locally in the browser or on the server?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             The signal processing and conformer inference are executed server-side (Hugging Face Spaces) in Python for numerical accuracy. Downsampled wave structures are then pushed via JSON to the browser client, which plots them using lightweight HTML5 canvas engines.
                         </div>
                     </div>
@@ -1033,7 +1033,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">What is this project?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             A deep-learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
                         </div>
                     </div>
@@ -1043,7 +1043,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">Why can't normal receivers do this?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             Classical receivers were designed to pull a signal out of weak, random background noise. 5G/LTE is the opposite: a strong, structured signal that overlaps yours in the same frequency band. Traditional methods can't separate two signals sharing a band — so they fail.
                         </div>
                     </div>
@@ -1053,7 +1053,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">What does "the interference is stronger than the signal" mean?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             It's measured as signal-to-jammer ratio (SJR). At 0 dB the interference has equal power to the signal; at &minus;5 dB it's about three times stronger. Classical receivers break down well before that point — this system keeps working.
                         </div>
                     </div>
@@ -1063,7 +1063,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">How accurate is it?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             The neural network alone recovers about 93% of frames perfectly. After error-correction coding, the message comes through with zero frame errors across the tested range — including when interference equals or exceeds signal power.
                         </div>
                     </div>
@@ -1073,7 +1073,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">Is this tested on real radio hardware?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             Not yet. All results are on a physically-modeled, simulated RF channel. Real-hardware testing with software-defined radios is the next phase of the project. (We state this plainly — simulation results are a starting point, not a field-deployment claim.)
                         </div>
                     </div>
@@ -1083,7 +1083,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">What's the hardest case it faces?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             Continuous narrowband jamming sitting directly on the carrier at equal power (like a continuous-wave jammer or strong spur). There the model leaves more errors, but error-correction still recovers the message — with a smaller safety margin than in other cases.
                         </div>
                     </div>
@@ -1093,7 +1093,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">Does it run in real time?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             Currently about 0.75&times; real-time on a mid-tier GPU — slightly slower than data arrives. There are three clear paths to close the gap: better deployment hardware with proper optimization, a hybrid design that only engages the neural network when interference is detected, or a smaller distilled model.
                         </div>
                     </div>
@@ -1103,7 +1103,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">What makes it novel?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             There is no published method that recovers telemetry bits when co-channel cellular interference is stronger than the signal. This system does — and it's validated end to end (synchronization, the model, and error correction working together), not just as a model in isolation.
                         </div>
                     </div>
@@ -1113,7 +1113,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">How does the demo work?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             You type a message; it's encoded into a radio waveform, corrupted by simulated interference and noise, then recovered by the receiver. You watch the signal at every stage — clean, interfered, received, recovered — and see the message come back error-free after error correction.
                         </div>
                     </div>
@@ -1123,7 +1123,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">What is PCM-FM telemetry?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             PCM-FM is the standard modulation (per the IRIG-106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
                         </div>
                     </div>
@@ -1133,7 +1133,7 @@
                             <span class="subtitle-lg" style="font-size: 16px;">Why deep learning instead of a classical filter?</span>
                             <span class="faq-icon">▾</span>
                         </div>
-                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal); display: none;">
+                        <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
                             A fixed filter can only remove interference whose shape you know in advance. A learned model adapts to the <em>structure</em> of real cellular interference — which varies with traffic, scheduling, and bandwidth — and separates it from the telemetry signal, something a static filter cannot do.
                         </div>
                     </div>
