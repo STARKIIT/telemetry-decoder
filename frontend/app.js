@@ -426,11 +426,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #166534; font-weight: 700; margin-bottom: 6px; font-family: sans-serif;">Model Output</div>
                 <div style="font-size: 16px; font-weight: 800; color: #15803d; font-family: monospace; word-break: break-word;">"${data.recovered_post_fec}"</div>
             </div>
-            <details style="margin-top: 10px;">
-                <summary style="font-size: 11.5px; color: #166534; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 4px 0;">
+            <details style="margin-top: 6px; margin-bottom: 0;">
+                <summary style="font-size: 11.5px; color: #166534; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 2px 0; margin: 0;">
                     <span style="font-size: 10px;">▾</span> Show intermediate output
                 </summary>
-                <div style="margin-top: 8px; font-size: 11.5px; color: #166534; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(21,128,61,0.04); border-radius: var(--rounded-sm); border: 1px dashed #86efac;">
+                <div style="margin-top: 6px; font-size: 11.5px; color: #166534; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(21,128,61,0.04); border-radius: var(--rounded-sm); border: 1px dashed #86efac; direction: ltr; unicode-bidi: isolate; word-break: break-all; overflow-wrap: break-word;">
                     <strong>Pre-FEC (Raw Model):</strong> "${data.recovered_pre_fec}"
                 </div>
             </details>
@@ -444,10 +444,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalPostFec}"</div>
             </div>
             <details style="margin-top: 6px; margin-bottom: 0;">
-                <summary style="font-size: 11.5px; color: #991b1b; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 4px 0;">
+                <summary style="font-size: 11.5px; color: #991b1b; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 2px 0; margin: 0;">
                     <span style="font-size: 10px;">▾</span> Show intermediate output
                 </summary>
-                <div style="margin-top: 8px; font-size: 11.5px; color: #991b1b; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(185,28,28,0.04); border-radius: var(--rounded-sm); border: 1px dashed #fca5a5;">
+                <div style="margin-top: 6px; font-size: 11.5px; color: #991b1b; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(185,28,28,0.04); border-radius: var(--rounded-sm); border: 1px dashed #fca5a5; direction: ltr; unicode-bidi: isolate; word-break: break-all; overflow-wrap: break-word;">
                     <strong>Pre-FEC (Classical):</strong> "${traditionalOutput}"
                 </div>
             </details>
