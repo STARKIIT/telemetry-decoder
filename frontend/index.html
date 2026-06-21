@@ -55,7 +55,7 @@
             <section class="editorial-intro">
                 <h1 class="hero-display">Signal Excision. Reimagined.</h1>
                 <p class="heading-md" style="margin-top: 8px;">Recovering messages from radio signals buried in 5G interference</p>
-                <p class="body-md" style="color: var(--steel); margin-top: -8px;">Deep-learning PCM-FM telemetry receiver</p>
+                <p class="body-md" style="color: var(--steel); margin-top: -8px;">An AI-Powered Telemetry Receiver</p>
             </section>
 
             <!-- Scrolling Storyboard Cards -->
@@ -974,31 +974,31 @@
                     <!-- FAQ Item 1 -->
                     <div class="faq-accordion-item">
                         <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
-                            <span class="subtitle-lg">How does the model handle out-of-distribution (OOD) interference?</span>
+                            <span class="subtitle-lg">What is this project?</span>
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            The excision engine utilizes domain randomization during training (v17 generator). It trains on dynamic wideband OFDM, multi-tone jammers, Swept chirps, and pulsed noise. This ensures the Conformer generalizes across standard LTE and 5G interference layers without crashing.
+                            A deep-learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
                     <div class="faq-accordion-item">
                         <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
-                            <span class="subtitle-lg">Why is LLR calibration needed before LDPC decoding?</span>
+                            <span class="subtitle-lg">Why can't normal receivers do this?</span>
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            Conformer output logits are computed using focal-loss gradients, which typical mis-calibrates probability outputs. By fitting a temperature scaling parameter <code>T</code> on the validation set, we restore honest, calibrated Log-Likelihood Ratios necessary for optimal min-sum LDPC checks.
+                            Classical receivers were designed to pull a signal out of weak, random background noise. 5G/LTE is the opposite: a strong, structured signal that overlaps yours in the same frequency band. Traditional methods can't separate two signals sharing a band — so they fail.
                         </div>
                     </div>
                     <!-- FAQ Item 3 -->
                     <div class="faq-accordion-item">
                         <div class="faq-question" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--hairline-soft);">
-                            <span class="subtitle-lg">Does this run locally in the browser or on the server?</span>
+                            <span class="subtitle-lg">What is PCM-FM telemetry?</span>
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            The signal processing and conformer inference are executed server-side (Hugging Face Spaces) in Python for numerical accuracy. Downsampled wave structures are then pushed via JSON to the browser client, which plots them using lightweight HTML5 canvas engines.
+                            PCM-FM is the standard modulation (per the IRIG-106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
                         </div>
                     </div>
                 </div>
