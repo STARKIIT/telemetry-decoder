@@ -31,6 +31,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 CHECKPOINT = "/content/drive/MyDrive/pcmfm_dataset_v16_5G_May/telemetry_v8_5.pth"
+# Local fallback
+_local_ckpt = os.path.join(os.path.dirname(os.path.abspath(__file__)), "telemetry_v8_5.pth")
+if os.path.exists(_local_ckpt):
+    CHECKPOINT = _local_ckpt
+elif os.path.exists("telemetry_v8_5.pth"):
+    CHECKPOINT = "telemetry_v8_5.pth"
 PAD        = 600
 CODE_N, CODE_DV, CODE_DC = 2046, 3, 6     # rate-1/2 proxy code (k=1025)
 CODE_SEED  = 7

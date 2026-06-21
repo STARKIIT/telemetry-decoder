@@ -41,6 +41,13 @@ import math
 # ────────────────────────────────────────────────────────────
 DATA_DIR   = "/content/drive/MyDrive/pcmfm_dataset_v16_5G_May"
 CHECKPOINT = "/content/drive/MyDrive/pcmfm_dataset_v16_5G_May/telemetry_v8_1.pth"
+# Local fallback
+_local_ckpt = os.path.join(os.path.dirname(os.path.abspath(__file__)), "telemetry_v8_5.pth")
+if not os.path.exists(CHECKPOINT):
+    if os.path.exists(_local_ckpt):
+        CHECKPOINT = _local_ckpt
+    elif os.path.exists("telemetry_v8_5.pth"):
+        CHECKPOINT = "telemetry_v8_5.pth"
 OUT_NPZ    = "llr_export_v8_1.npz"
 NUM_BITS   = 256
 BATCH_SIZE = 256
