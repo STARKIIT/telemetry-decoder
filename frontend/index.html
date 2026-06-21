@@ -56,7 +56,7 @@
             <section class="editorial-intro">
                 <h1 class="hero-display">Signal Excision. Reimagined.</h1>
                 <p class="heading-md" style="margin-top: 8px;">Recovering messages from radio signals buried in 5G interference</p>
-                <p class="body-md" style="color: var(--steel); margin-top: -8px;">An AI-Powered Telemetry Receiver</p>
+                <p class="body-md" style="color: var(--steel); margin-top: -8px;">An AI Powered Telemetry Receiver</p>
             </section>
 
             <!-- Scrolling Storyboard Cards -->
@@ -64,7 +64,7 @@
                 <!-- Card 1: The Problem -->
                 <div class="about-segment-card">
                     <div class="about-segment-left">
-                        <div class="about-segment-num">01 / THE CONFLICT</div>
+                        <div class="about-segment-num">01. CONFLICT</div>
                         <h2 class="about-segment-title">The Problem</h2>
                         <p class="about-segment-desc">
                             Aircraft and missiles send telemetry — altitude, speed, position, sensor data — back to the ground as radio signals. The frequency bands they use now overlap with 5G and LTE networks. When a cell tower transmits over the same band, the interference can be <strong>stronger than the telemetry signal itself</strong>, causing the signal to be completely lost.
@@ -93,7 +93,7 @@
                 <!-- Card 2: Why Traditional Fail -->
                 <div class="about-segment-card">
                     <div class="about-segment-left">
-                        <div class="about-segment-num">02 / LIMITS OF DSP</div>
+                        <div class="about-segment-num">02. LIMITATIONS</div>
                         <h2 class="about-segment-title">Why Traditional Receivers Fail</h2>
                         <p class="about-segment-desc">
                             Classical receivers were built to pull a signal out of random background static. They assume interference is weak and noise-like. But 5G/LTE isn't random noise — it's a strong, structured signal sitting right on top of yours. A traditional receiver can't tell the two apart, so it rejects or distorts both, failing to extract any telemetry.
@@ -127,10 +127,10 @@
                 <!-- Card 3: What This Does -->
                 <div class="about-segment-card">
                     <div class="about-segment-left">
-                        <div class="about-segment-num">03 / CONFORMER EXCISION</div>
+                        <div class="about-segment-num">03. EXCISION</div>
                         <h2 class="about-segment-title">What This Does</h2>
                         <p class="about-segment-desc">
-                            This is a deep-learning receiver that <strong>learns</strong> what cellular interference looks like and separates it from the telemetry signal — like picking out one voice in a loud room instead of just turning the volume down. A neural network reconstructs the clean signal, and error-correction coding fixes whatever remains. The result: the original message is recovered exactly, even when the interference outpowers the signal.
+                            This is a deep learning receiver that <strong>learns</strong> what cellular interference looks like and separates it from the telemetry signal — like picking out one voice in a loud room instead of just turning the volume down. A neural network reconstructs the clean signal, and error correction coding fixes whatever remains. The result: the original message is recovered exactly, even when the interference outpowers the signal.
                         </p>
                     </div>
                     <div class="about-segment-right">
@@ -170,7 +170,7 @@
                         <span class="tile-icon"><i class="ph-duotone ph-target"></i></span>
                         <h3 class="subtitle-lg">Segmented Sync</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
-                            Classic correlation is split into 4 segments of 8 µs. Combines GPS-style acquisition grids to withstand severe carrier frequency offsets up to ±240 kHz.
+                            Classic correlation is split into 4 segments of 8 µs. Combines GPS style acquisition grids to withstand severe carrier frequency offsets up to ±240 kHz.
                         </p>
                     </div>
                     <div class="why-buy-tile">
@@ -184,14 +184,14 @@
                         <span class="tile-icon"><i class="ph-duotone ph-brain"></i></span>
                         <h3 class="subtitle-lg">Conformer Blocks</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
-                            Conformer layers utilize both self-attention and depth-wise convolutions to capture long-range temporal dependencies and restore phase integrity.
+                            Conformer layers utilize both self-attention and depthwise convolutions to capture long range temporal dependencies and restore phase integrity.
                         </p>
                     </div>
                     <div class="why-buy-tile">
                         <span class="tile-icon"><i class="ph-duotone ph-shield-check"></i></span>
                         <h3 class="subtitle-lg">Min-Sum LDPC</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
-                            Calibrated Log-Likelihood Ratios feed a rate-1/2 LDPC decoder (50 max iterations), restoring corrupted signals error-free even during severe jammer overlaps.
+                            Calibrated Log Likelihood Ratios feed a rate 1/2 LDPC decoder (50 max iterations), restoring corrupted signals error free even during severe jammer overlaps.
                         </p>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
                         <span class="prompt-plus-icon">+</span>
                         <input type="text" id="messageInput" class="prompt-input" value="ALTITUDE 35000 SPEED 480 HEADING 270" placeholder="Type telemetry string to simulate..." maxlength="128">
                         <div class="prompt-actions">
-                            <span class="prompt-char-count" id="charCount">37 / 128 chars</span>
+                            <span class="prompt-char-count" id="charCount">37 of 128 characters</span>
                             <button type="button" class="btn-config-toggle" id="btnToggleConfig" title="Simulation Settings">
                                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
                                     <circle cx="12" cy="12" r="3"></circle>
@@ -377,9 +377,9 @@
 
             <!-- Bit-Level Verification Grids -->
             <div class="card-product-feature" style="margin-top: 24px;">
-                <h3 class="heading-sm" style="margin-bottom: var(--spacing-md);">Bit-Level Verification (Frames)</h3>
+                <h3 class="heading-sm" style="margin-bottom: var(--spacing-md);">Bit Level Verification (Frames)</h3>
                 <p class="body-sm" style="color: var(--steel); margin-bottom: var(--spacing-lg);">
-                    Review bit-level diffs for received frames. The red highlighted bits show errors present in the raw Conformer output before forward error correction.
+                    Review bit level diffs for received frames. The red highlighted bits show errors present in the raw Conformer output before forward error correction.
                 </p>
                 <div id="framesBitGridContainer"></div>
             </div>
@@ -391,7 +391,7 @@
                         <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-soft); width: 44px; height: 44px; border-radius: var(--rounded-lg); color: var(--primary);"><i class="ph-duotone ph-book-open"></i></span>
                         <div>
                             <h2 class="heading-sm" style="margin: 0; font-size: 20px;">How It Works</h2>
-                            <p class="body-sm" style="color: var(--steel); margin: 0; margin-top: 2px;">Step-by-step visualization of digitization, modulation, and error-correction</p>
+                            <p class="body-sm" style="color: var(--steel); margin: 0; margin-top: 2px;">Step by step visualization of digitization, modulation, and error correction</p>
                         </div>
                     </div>
                     <div class="toggle-icon" id="howItWorksToggleIcon" style="transition: transform 0.3s ease; transform: rotate(0deg); display: flex; align-items: center; justify-content: center;">
@@ -406,7 +406,7 @@
                     <div class="card-product-feature" style="padding: 28px 24px;">
                         <div style="margin-bottom: 24px;">
                             <h3 class="heading-sm" style="margin: 0 0 4px 0; font-size: 22px;">From Message to Radio Wave</h3>
-                            <div class="body-sm" style="color: var(--steel);">How your text becomes a PCM-FM signal (digitization &rarr; modulation)</div>
+                            <div class="body-sm" style="color: var(--steel);">How your text becomes a PCM FM signal (digitization &rarr; modulation)</div>
                         </div>
 
                         <!-- Horizontal Stages Strip -->
@@ -485,7 +485,7 @@
 
                         <div style="margin-top: 24px; border-top: 1px dashed var(--hairline); padding-top: 16px; text-align: center;">
                             <p class="body-sm-bold" style="color: var(--ink-deep); margin-bottom: 4px; line-height: 1.4;">
-                                "A 256-bit frame becomes a 2560-sample complex waveform in 256 microseconds. The data lives in the signal's frequency, not its amplitude."
+                                "A 256 bit frame becomes a 2560 sample complex waveform in 256 microseconds. The data lives in the signal's frequency, not its amplitude."
                             </p>
                             <p class="caption" style="color: var(--steel); margin: 0;">
                                 Real telemetry parameters: 1 Mbit/s transmission speed, modulation index <em>h</em> = 0.70 (&plusmn;350 kHz frequency swing), Gaussian shaping <em>BT</em> = 0.5, 10 samples per bit.
@@ -498,7 +498,7 @@
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
                             <div>
                                 <h3 class="heading-sm" style="margin: 0 0 4px 0; font-size: 22px;">How Errors Get Corrected</h3>
-                                <div class="body-sm" style="color: var(--steel);">Error-correction coding (LDPC) rescues bits the model gets wrong</div>
+                                <div class="body-sm" style="color: var(--steel);">Error correction coding (LDPC) rescues bits the model gets wrong</div>
                             </div>
                             <button type="button" class="btn-secondary" id="btnReplayFec" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: var(--rounded-md); border: 1px solid var(--hairline); background: var(--canvas); transition: all 0.2s; color: var(--ink-deep);">
                                 <i class="ph-duotone ph-arrow-counter-clockwise" style="font-size: 16px;"></i> Replay
@@ -551,7 +551,7 @@
                             </p>
                             <div style="margin-top: 12px; background: var(--canvas); border-left: 3px solid var(--primary-soft); padding: 10px 14px; border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0;">
                                 <p class="caption" style="color: var(--steel); margin: 0; line-height: 1.5;">
-                                    <strong>Rate-1/2</strong> means half the transmitted bits are redundancy. More redundancy = more errors correctable, at the cost of throughput. This project uses IRIG-106-class LDPC codes.
+                                    <strong>Rate 1/2</strong> means half the transmitted bits are redundancy. More redundancy = more errors correctable, at the cost of throughput. This project uses IRIG 106 class LDPC codes.
                                 </p>
                             </div>
                         </div>
@@ -591,13 +591,13 @@
                         <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
                             <span style="font-size: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--critical);"><i class="ph-duotone ph-broadcast"></i></span>
-                            <h3 class="heading-sm" style="margin: 0;">Hardware End-to-End Testing</h3>
+                            <h3 class="heading-sm" style="margin: 0;">Hardware End to End Testing</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
-                            All performance results are currently evaluated on **high-fidelity simulated RF channels** modeling realistic cellular network dynamics, Doppler shifts, and thermal noise.
+                            All performance results are currently evaluated on **high fidelity simulated RF channels** modeling realistic cellular network dynamics, Doppler shifts, and thermal noise.
                         </p>
                         <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
-                            <strong>Next phase:</strong> Live over-the-air testing utilizing physical software-defined radio (SDR) hardware and off-the-air signal recordings.
+                            <strong>Next phase:</strong> Live over the air testing utilizing physical software defined radio (SDR) hardware and off the air signal recordings.
                         </p>
                     </div>
 
@@ -609,7 +609,7 @@
                             <h3 class="heading-sm" style="margin: 0;">Narrowband Tone Jamming</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
-                            Continuous narrowband tones at equal power produce a higher raw BER (~2.5%). Error-correction still recovers the message, but the <strong>safety margin is thinner</strong> and could be exceeded under stronger jamming.
+                            Continuous narrowband tones at equal power produce a higher raw BER (~2.5%). Error correction still recovers the message, but the <strong>safety margin is thinner</strong> and could be exceeded under stronger jamming.
                         </p>
                         <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
                             <strong>Planned fix:</strong> A larger multi-frame model that exploits temporal context across neighboring frames.
@@ -638,11 +638,11 @@
                                 <td style="padding: 10px 12px;"><span style="color: var(--ink-deep); font-weight: 700;">Demonstrated (simulation)</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
-                                <td style="padding: 10px 12px; color: var(--charcoal);">End-to-end validated (sync → model → FEC)</td>
+                                <td style="padding: 10px 12px; color: var(--charcoal);">End to end validated (sync → model → FEC)</td>
                                 <td style="padding: 10px 12px;"><span style="color: var(--ink-deep); font-weight: 700;">Validated</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
-                                <td style="padding: 10px 12px; color: var(--charcoal);">Runs at real-time speed</td>
+                                <td style="padding: 10px 12px; color: var(--charcoal);">Runs at real time speed</td>
                                 <td style="padding: 10px 12px;"><span style="color: #f59e0b; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><i class="ph-duotone ph-warning-circle" style="font-size: 16px;"></i> ~0.75× on L4; clear paths to close</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--hairline-soft);">
@@ -672,7 +672,7 @@
 
                 <!-- Horizontal Model Architecture Pipeline Flow -->
                 <div class="tech-specs-diagram-container" style="margin: 0 auto 32px auto; max-width: 1000px; overflow-x: auto; background-color: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: var(--spacing-xl); box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;">
-                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">Step-by-Step Model Architecture Pipeline</h3>
+                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">Step by Step Model Architecture Pipeline</h3>
                     <svg class="specs-pipeline-svg" viewBox="0 0 1000 130" width="100%" height="auto" style="min-width: 900px; display: block; margin: 0 auto;">
                         <defs>
                             <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -769,10 +769,10 @@
                         <!-- Step 7: LLR & LDPC -->
                         <g transform="translate(850, 15)">
                             <rect width="140" height="85" rx="8" fill="url(#grad-green)" stroke="#2ca02c" stroke-width="1.5" />
-                            <text x="70" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#14532d">7. LLR / LDPC</text>
-                            <text x="70" y="42" text-anchor="middle" font-size="9" fill="#2ca02c">Temp Scaling LLRs</text>
+                            <text x="70" y="22" text-anchor="middle" font-weight="bold" font-size="10.5" fill="#14532d">7. LDPC Decoding</text>
+                            <text x="70" y="42" text-anchor="middle" font-size="9" fill="#2ca02c">Temperature Scaling LLRs</text>
                             <text x="70" y="56" text-anchor="middle" font-size="9" fill="#4b5660">Min-Sum Iterative Checks</text>
-                            <text x="70" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Error-Free Recovery</text>
+                            <text x="70" y="70" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#8595a4">Error Free Recovery</text>
                         </g>
                     </svg>
                 </div>
@@ -784,13 +784,13 @@
                         <img src="model_architecture_3d.png" alt="3D Model Architecture" style="width: 100%; height: auto; display: block;" />
                     </div>
                     <p class="caption" style="color: var(--steel); margin-top: 12px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.5;">
-                        Visual model design: <strong>SpectralGate</strong> applies learned soft-frequency excision to remove 5G/LTE blockers, the convolutional <strong>U-Net Denoiser</strong> performs time-domain waveform recovery, and the <strong>Conformer Stack</strong> decodes temporal bit sequences.
+                        Visual model design: <strong>SpectralGate</strong> applies learned soft frequency excision to remove 5G/LTE blockers, the convolutional <strong>UNet Denoiser</strong> performs time domain waveform recovery, and the <strong>Conformer Stack</strong> decodes temporal bit sequences.
                     </p>
                 </div>
 
                 <!-- Detailed Signal Chain Steps (from signal_chain_detailed.md) -->
                 <div class="detailed-chain-container" style="max-width: 1000px; margin: 0 auto 48px auto;">
-                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">End-to-End Signal Chain Detail</h3>
+                    <h3 class="heading-sm text-center" style="margin-top: 0; margin-bottom: 24px; color: var(--ink-deep);">End to End Signal Chain Detail</h3>
                     <div class="chain-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
                         <!-- Part A: Forward Chain -->
                         <div style="background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 24px; box-shadow: rgba(0,0,0,0.01) 0 4px 12px;">
@@ -798,15 +798,15 @@
                                 <i class="ph-duotone ph-broadcast" style="font-size: 20px;"></i> Part A: Forward Chain (Transmission &amp; Impairments)
                             </h4>
                             <p class="body-sm" style="color: var(--slate); margin-bottom: 16px; line-height: 1.5;">
-                                The channel simulator generates a physically accurate telemetry signal and subjects it to real-world RF link impairments:
+                                The channel simulator generates a physically accurate telemetry signal and subjects it to real world RF link impairments:
                             </p>
                             <ol style="padding-left: 20px; font-size: 13px; line-height: 1.6; color: var(--charcoal); display: flex; flex-direction: column; gap: 12px; margin: 0;">
-                                <li><strong>Digital Bits to NRZ:</strong> 256 bits map to bipolar NRZ symbols (0 &rarr; -1, 1 &rarr; +1) at 10 samples per bit (1 Mbps over 10 MHz), producing a 2560-sample baseband stream.</li>
+                                <li><strong>Digital Bits to NRZ:</strong> 256 bits map to bipolar NRZ symbols (0 &rarr; -1, 1 &rarr; +1) at 10 samples per bit (1 Mbps over 10 MHz), producing a 2560 sample baseband stream.</li>
                                 <li><strong>Gaussian Pulse Shaping:</strong> The NRZ signal is shaped via a Gaussian filter (BT=0.5, &sigma;&approx;2.65 samples) to smooth transitions and restrict the spectrum.</li>
-                                <li><strong>FM Modulation (Digital &rarr; IQ):</strong> The shaped baseband signal shifts carrier frequency by &plusmn;350 kHz. Phase integration yields <code>exp(j&middot;&phi;(t))</code>, a constant-envelope complex IQ waveform.</li>
-                                <li><strong>Oscillator &amp; Motion Drift:</strong> Random-walk Wiener phase noise (5-200 Hz linewidth) and Doppler shift (&plusmn;25 kHz) model hardware drift and vehicle velocity.</li>
+                                <li><strong>FM Modulation (Digital &rarr; IQ):</strong> The shaped baseband signal shifts carrier frequency by &plusmn;350 kHz. Phase integration yields <code>exp(j&middot;&phi;(t))</code>, a constant envelope complex IQ waveform.</li>
+                                <li><strong>Oscillator &amp; Motion Drift:</strong> Random walk Wiener phase noise (5-200 Hz linewidth) and Doppler shift (&plusmn;25 kHz) model hardware drift and vehicle velocity.</li>
                                 <li><strong>Cellular Co-Channel interference:</strong> CP-OFDM LTE and 5G NR (256-QAM) blockers are generated and summed directly onto the telemetry band.</li>
-                                <li><strong>LNA Saturation:</strong> Under high interference, the receiver's Low-Noise Amplifier saturates, compressing amplitudes and generating third-order IM3 intermod products.</li>
+                                <li><strong>LNA Saturation:</strong> Under high interference, the receiver's Low Noise Amplifier saturates, compressing amplitudes and generating third-order IM3 intermod products.</li>
                                 <li><strong>Gain Scaling &amp; Noise:</strong> An Automatic Gain Control loop normalizes power to -10 dBm. Finally, AWGN is added for the target SNR.</li>
                             </ol>
                         </div>
@@ -820,11 +820,11 @@
                                 The receiver performs synchronization, extracts the signal, excises interference, and decodes the message:
                             </p>
                             <ol style="padding-left: 20px; font-size: 13px; line-height: 1.6; color: var(--charcoal); display: flex; flex-direction: column; gap: 12px; margin: 0;">
-                                <li><strong>Frame Synchronization:</strong> A segmented correlation bank searches over Time-Lag &times; CFO to lock on the 320-sample sync word pattern (Lock threshold PSL &ge; 1.5).</li>
-                                <li><strong>CFO Derotation &amp; Scaling:</strong> Sliced 2560-sample frames are derotated to remove CFO, and gain is scaled back to -10 dBm to satisfy the model's amplitude constraints.</li>
-                                <li><strong>Spectral Excision (SpectralGate):</strong> Fast Fourier Transform (FFT) vectors enter the model, where the SpectralGate applies dynamic frequency-domain masking.</li>
-                                <li><strong>CNN &amp; Conformer Layers:</strong> The U-Net denoiser extracts clean phase features, and 4 Conformer blocks model long-range temporal bit dependencies, outputting 256 bit logits.</li>
-                                <li><strong>LLR Calibration:</strong> Raw focal-loss logits are temperature-calibrated (T &approx; 0.55) to output honest Log-Likelihood Ratios (LLRs).</li>
+                                <li><strong>Frame Synchronization:</strong> A segmented correlation bank searches over Time Lag &times; CFO to lock on the 320 sample sync word pattern (Lock threshold PSL &ge; 1.5).</li>
+                                <li><strong>CFO Derotation &amp; Scaling:</strong> Sliced 2560 sample frames are derotated to remove CFO, and gain is scaled back to -10 dBm to satisfy the model's amplitude constraints.</li>
+                                <li><strong>Spectral Excision (SpectralGate):</strong> Fast Fourier Transform (FFT) vectors enter the model, where the SpectralGate applies dynamic frequency domain masking.</li>
+                                <li><strong>CNN &amp; Conformer Layers:</strong> The UNet denoiser extracts clean phase features, and 4 Conformer blocks model long range temporal bit dependencies, outputting 256 bit logits.</li>
+                                <li><strong>LLR Calibration:</strong> Raw focal loss logits are temperature calibrated (T &approx; 0.55) to output honest Log Likelihood Ratios (LLRs).</li>
                                 <li><strong>LDPC Belief Propagation:</strong> Codewords spanning 10 frames are checked iteratively (Min-Sum decoder, 50 max iterations) to locate and correct remaining bit flips.</li>
                                 <li><strong>Descrambling to ASCII:</strong> Corrected bits are descrambled via an LFSR keystream XOR, grouped into bytes, and converted to ASCII characters to yield the final text.</li>
                             </ol>
@@ -835,20 +835,20 @@
                 <!-- Parameters Table & Model Specifications -->
                 <div class="tech-specs-table" style="margin-bottom: 32px;">
                     <div class="specs-row header">
-                        <div class="specs-label heading-sm" style="margin:0;">System Parameter / Dimension</div>
-                        <div class="specs-value heading-sm" style="margin:0;">Specification / Value</div>
+                        <div class="specs-label heading-sm" style="margin:0;">System Parameter</div>
+                        <div class="specs-value heading-sm" style="margin:0;">Specification</div>
                     </div>
                     <div class="specs-row">
-                        <div class="specs-label body-sm-bold">PCM-FM Modulation</div>
+                        <div class="specs-label body-sm-bold">PCM FM Modulation</div>
                         <div class="specs-value body-sm">1 Mbps Bitrate, Peak Deviation (fd) = 350 kHz (h=0.7), BT=0.5, Sampling = 10 MHz</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">Frame Sync Word</div>
-                        <div class="specs-value body-sm">32-bit IRIG-106 pattern <code>0xFE6B2840</code> (CFO removal segment correlation)</div>
+                        <div class="specs-value body-sm">32 bit IRIG 106 pattern <code>0xFE6B2840</code> (CFO removal segment correlation)</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">SpectralGate Masking</div>
-                        <div class="specs-value body-sm">FFT-based soft-excision layer, thresholding high-power co-channel blockers</div>
+                        <div class="specs-value body-sm">FFT based soft excision layer, thresholding high power co channel blockers</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">UNet Wave Denoiser</div>
@@ -863,12 +863,12 @@
                         <div class="specs-value body-sm">6.07 Million (Parameters weight trained with Focal Loss and AdamW)</div>
                     </div>
                     <div class="specs-row">
-                        <div class="specs-label body-sm-bold">Soft-Output Calibration</div>
+                        <div class="specs-label body-sm-bold">Soft Output Calibration</div>
                         <div class="specs-value body-sm">Temperature Scaling (T &approx; 0.55), converting logits into calibrated LLRs (ECE &approx; 1e-4)</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">Forward Error Correction</div>
-                        <div class="specs-value body-sm">Rate-1/2 LDPC Code (n=2046, k=1025) with Vectorized Normalized Min-Sum Decoder (50 iter, &alpha;=0.75)</div>
+                        <div class="specs-value body-sm">Rate 1/2 LDPC Code (n=2046, k=1025) with Vectorized Normalized Min-Sum Decoder (50 iter, &alpha;=0.75)</div>
                     </div>
                 </div>
 
@@ -892,30 +892,30 @@
                 <div class="glossary-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1000px; margin: 0 auto;">
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">RF (Radio Frequency)</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High-frequency electromagnetic waves used to transmit flight data wirelessly.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High frequency electromagnetic waves used to transmit flight data wirelessly.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">IQ (In-Phase / Quadrature)</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">IQ (In Phase and Quadrature)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Complex representation of a signal split into real (I) and imaginary (Q) components.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">PCM-FM (Pulse Code Modulation - FM)</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Telemetry standard (IRIG-106) where digital bits modulate carrier frequency offsets.</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">PCM FM (Pulse Code Modulation FM)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Telemetry standard (IRIG 106) where digital bits modulate carrier frequency offsets.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">FSW (Frame Synchronization Word)</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">A unique 32-bit marker (<code>0xFE6B2840</code>) prepended to frames to lock alignment.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">A unique 32 bit marker (<code>0xFE6B2840</code>) prepended to frames to lock alignment.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">CFO (Carrier Frequency Offset)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency misalignment between local and remote oscillators due to drift or Doppler.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SJR (Signal-to-Jammer Ratio)</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SJR (Signal to Jammer Ratio)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Power ratio between the telemetry signal and co-channel cellular interference (dB).</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SNR (Signal-to-Noise Ratio)</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SNR (Signal to Noise Ratio)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Power ratio between the telemetry signal and static background thermal noise (dB).</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
@@ -923,7 +923,7 @@
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Mathematical noise model representing random thermal static in electrical channels.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LNA (Low-Noise Amplifier)</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LNA (Low Noise Amplifier)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">First-stage receiver amplifier; operates in compression (acting as a limiter) under jamming.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
@@ -932,26 +932,26 @@
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Spectral Excision</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency-domain filtering that selectively zeroes out narrow/wideband interference peaks.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency domain filtering that selectively zeroes out narrow/wideband interference peaks.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SpectralGate Layer</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">FFT-based learned dynamic frequency mask to excise cellular blockers.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">FFT based learned dynamic frequency mask to excise cellular blockers.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">U-Net Denoiser</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">An encoder-decoder network with skip connections to reconstruct clean baseband waveforms.</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">UNet Denoiser</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">An encoder decoder network with skip connections to reconstruct clean baseband waveforms.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Conformer Stack</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Four attention+convolution layers that perform temporal modeling and decode bit sequences.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Four attention and convolution layers that perform temporal modeling and decode bit sequences.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Logit</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Raw, unscaled real-valued outputs from the neural network representing bit confidence.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LLR (Log-Likelihood Ratio)</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LLR (Log Likelihood Ratio)</div>
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Temperature-calibrated soft probability values used directly by the LDPC decoder.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
@@ -959,8 +959,8 @@
                         <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Redundant data encoding that allows the receiver to detect and correct bit errors.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
-                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LDPC (Low-Density Parity-Check)</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High-efficiency linear error-correcting block code used to fix residual bit errors.</div>
+                        <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">LDPC (Low Density Parity Check)</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">High efficiency linear error correcting block code used to fix residual bit errors.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Min-Sum Algorithm</div>
@@ -984,7 +984,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            A deep-learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
+                            A deep learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
@@ -1004,7 +1004,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            PCM-FM is the standard modulation (per the IRIG-106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
+                            PCM FM is the standard modulation (per the IRIG 106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
                         </div>
                     </div>
                 </div>
@@ -1040,7 +1040,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            A deep-learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
+                            A deep learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
                         </div>
                     </div>
                     <!-- FAQ 2 -->
@@ -1060,7 +1060,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            It's measured as signal-to-jammer ratio (SJR). At 0 dB the interference has equal power to the signal; at &minus;5 dB it's about three times stronger. Classical receivers break down well before that point — this system keeps working.
+                            It's measured as signal to jammer ratio (SJR). At 0 dB the interference has equal power to the signal; at &minus;5 dB it's about three times stronger. Classical receivers break down well before that point — this system keeps working.
                         </div>
                     </div>
                     <!-- FAQ 4 -->
@@ -1070,7 +1070,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            The neural network alone recovers about 93% of frames perfectly. After error-correction coding, the message comes through with zero frame errors across the tested range — including when interference equals or exceeds signal power.
+                            The message comes through with zero frame errors across the tested range — including when interference equals or exceeds signal power.
                         </div>
                     </div>
                     <!-- FAQ 5 -->
@@ -1080,7 +1080,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            Not yet. All results are on a physically-modeled, simulated RF channel. Real-hardware testing with software-defined radios is the next phase of the project. (We state this plainly — simulation results are a starting point, not a field-deployment claim.)
+                            Not yet. All results are on a physically modeled, simulated RF channel. Real hardware testing with software defined radios is the next phase of the project. (We state this plainly — simulation results are a starting point, not a field deployment claim.)
                         </div>
                     </div>
                     <!-- FAQ 6 -->
@@ -1090,7 +1090,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            Continuous narrowband jamming sitting directly on the carrier at equal power (like a continuous-wave jammer or strong spur). There the model leaves more errors, but error-correction still recovers the message — with a smaller safety margin than in other cases.
+                            Continuous narrowband jamming sitting directly on the carrier at equal power (like a continuous wave jammer or strong spur). There the model leaves more errors, but error correction still recovers the message — with a smaller safety margin than in other cases.
                         </div>
                     </div>
                     <!-- FAQ 7 -->
@@ -1100,7 +1100,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            Currently about 0.75&times; real-time on a mid-tier GPU — slightly slower than data arrives. There are three clear paths to close the gap: better deployment hardware with proper optimization, a hybrid design that only engages the neural network when interference is detected, or a smaller distilled model.
+                            Currently about 0.75&times; real time on a mid-tier GPU — slightly slower than data arrives. There are three clear paths to close the gap: better deployment hardware with proper optimization, a hybrid design that only engages the neural network when interference is detected, or a smaller distilled model.
                         </div>
                     </div>
                     <!-- FAQ 8 -->
@@ -1120,7 +1120,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            You type a message; it's encoded into a radio waveform, corrupted by simulated interference and noise, then recovered by the receiver. You watch the signal at every stage — clean, interfered, received, recovered — and see the message come back error-free after error correction.
+                            You type a message; it's encoded into a radio waveform, corrupted by simulated interference and noise, then recovered by the receiver. You watch the signal at every stage — clean, interfered, received, recovered — and see the message come back error free after error correction.
                         </div>
                     </div>
                     <!-- FAQ 10 -->
@@ -1130,7 +1130,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            PCM-FM is the standard modulation (per the IRIG-106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
+                            PCM FM is the standard modulation (per the IRIG 106 telemetry standard) used to send digital data from aircraft, missiles, and test vehicles back to ground stations. It encodes bits as small shifts in a radio carrier's frequency.
                         </div>
                     </div>
                     <!-- FAQ 11 -->
@@ -1148,7 +1148,7 @@
                 <div style="border-top: 1px dashed var(--hairline); padding-top: 48px; margin-top: 48px;">
                     <h2 class="heading-lg text-center" style="margin-bottom: 12px;">Why This Matters: Significance &amp; Motivation</h2>
                     <p class="body-md text-center" style="color: var(--steel); max-width: 600px; margin: 0 auto 48px auto;">
-                        Resilience under interference is a critical requirement in modern defense-sponsored and civilian communications.
+                        Resilience under interference is a critical requirement in modern defense sponsored and civilian communications.
                     </p>
                     
                     <div class="limitations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto 48px auto;">
@@ -1160,7 +1160,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Congested &amp; Contested Spectrum</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                Defense and flight-test telemetry increasingly shares frequency bands with commercial 5G and LTE. Reliable data recovery under co-channel interference has become a baseline requirement, not a rare edge case.
+                                Defense and flight test telemetry increasingly shares frequency bands with commercial 5G and LTE. Reliable data recovery under co channel interference has become a baseline requirement, not a rare edge case.
                             </p>
                         </div>
                         
@@ -1172,7 +1172,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Resilience in Degraded RF &amp; EW</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                The ability to recover a signal when something stronger is sitting on top of it is foundational to operating in crowded or contested spectrum &mdash; a central concern of modern, electronic-warfare-aware system design.
+                                The ability to recover a signal when something stronger is sitting on top of it is foundational to operating in crowded or contested spectrum &mdash; a central concern of modern, electronic warfare aware system design.
                             </p>
                         </div>
                         
@@ -1184,7 +1184,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Mission &amp; Safety Critical</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                Flight-test and range telemetry carries safety-of-flight and mission-critical information. Losing frames to interference is not an inconvenience &mdash; it is a critical data-integrity and aerospace safety problem.
+                                Flight test and range telemetry carries safety of flight and mission critical information. Losing frames to interference is not an inconvenience &mdash; it is a critical data integrity and aerospace safety problem.
                             </p>
                         </div>
                         
@@ -1193,7 +1193,7 @@
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #8b5cf6, #6d28d9);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
                                 <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: var(--oculus-purple);"><i class="ph-duotone ph-brain"></i></span>
-                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">AI-Defined Radio Systems</h3>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">AI Defined Radio Systems</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
                                 Learned receivers that adapt to the structure of interference &mdash; rather than relying on fixed classical filters &mdash; represent a generational shift in how resilient communication and signal-intelligence systems are built.
@@ -1205,10 +1205,10 @@
                             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #10b981, #047857);"></div>
                             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
                                 <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; color: #10b981;"><i class="ph-duotone ph-airplane-takeoff"></i></span>
-                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Dual-Use Aerospace Value</h3>
+                                <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Dual Use Aerospace Value</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                Solving telemetry-versus-cellular coexistence has direct civilian benefit (aviation, congested-band IoT and urban communications) alongside its defense relevance &mdash; the same capability serves both.
+                                Solving telemetry versus cellular coexistence has direct civilian benefit (aviation, congested band IoT and urban communications) alongside its defense relevance &mdash; the same capability serves both.
                             </p>
                         </div>
  
@@ -1240,26 +1240,35 @@
     <footer class="footer-region">
         <div class="footer-grid">
             <div class="footer-column">
-                <span class="body-sm-bold text-primary">Simulation Platforms</span>
-                <a href="#" class="footer-link">PCM-FM Transceiver</a>
-                <a href="#" class="footer-link">Rapp LNA Compression</a>
-                <a href="#" class="footer-link">OOD Noise Generator</a>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg class="project-logo" viewBox="0 0 32 32" width="24" height="24">
+                        <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--fb-blue)" />
+                                <stop offset="100%" stop-color="var(--primary)" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="32" height="32" rx="8" fill="url(#footerLogoGrad)" />
+                        <path d="M7 16 H9 L12 8 L16 24 L20 12 L23 16 H25" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span style="font-weight: 700; color: var(--ink-deep); font-size: 15px;">Telemetry Decoder Simulator</span>
+                </div>
+                <p class="body-sm" style="color: var(--steel); max-width: 460px; line-height: 1.5; margin-top: 4px;">
+                    An interactive simulator demonstrating conformer based signal excision and error correction for resilient telemetry under co channel interference.
+                </p>
             </div>
-            <div class="footer-column">
-                <span class="body-sm-bold text-primary">FEC Specifications</span>
-                <a href="#" class="footer-link">Rate-1/2 Gallager</a>
-                <a href="#" class="footer-link">Rate-2/3 Code</a>
-                <a href="#" class="footer-link">Rate-4/5 Code</a>
-            </div>
-            <div class="footer-column">
-                <span class="body-sm-bold text-primary">Science Papers</span>
-                <a href="#" class="footer-link">IRIG-106 Chapter 4</a>
-                <a href="#" class="footer-link">Conformer Architecture</a>
-                <a href="#" class="footer-link">Spectral Excision</a>
+            <div class="footer-column navigation-col">
+                <span class="body-sm-bold text-primary" style="text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Navigation</span>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#home" class="footer-link">About</a>
+                    <a href="#sim" class="footer-link">Live Sim</a>
+                    <a href="#specs" class="footer-link">Tech Specs</a>
+                    <a href="#glossary" class="footer-link">Glossary &amp; FAQ</a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <span class="caption">© 2026 Telemetry Decoder Project. Simulated environment.</span>
+            <span class="caption">© 2026 Telemetry Decoder Project. Developed for simulated RF channel environments.</span>
             <div class="footer-legal">
                 <a href="#" class="caption-link">Terms</a>
                 <a href="#" class="caption-link">Privacy</a>
