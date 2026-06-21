@@ -244,13 +244,13 @@ body {
     padding: 0 var(--spacing-xxl);
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .nav-left {
     display: flex;
     align-items: center;
     gap: var(--spacing-base);
+    flex: 1 1 0%;
 }
 
 .meta-logo {
@@ -296,6 +296,8 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    flex: 1 1 0%;
 }
 
 .colab-link-btn {
