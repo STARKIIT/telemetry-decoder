@@ -435,8 +435,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <summary style="font-size: 11.5px; color: #166534; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 2px 0; margin: 0;">
                     <span style="font-size: 10px;">▾</span> Show intermediate output
                 </summary>
-                <div style="margin-top: 6px; font-size: 11.5px; color: #166534; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(21,128,61,0.04); border-radius: var(--rounded-sm); border: 1px dashed #86efac; word-break: break-all; overflow-wrap: break-word;">
-                    <strong>Pre-FEC (Raw Model):</strong> "${sanitizeForDisplay(data.recovered_pre_fec)}"
+                <div style="margin-top: 6px; color: #166534; opacity: 0.85; padding: 8px 10px; background: rgba(21,128,61,0.04); border-radius: var(--rounded-sm); border: 1px dashed #86efac;">
+                    <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-family: sans-serif; margin-bottom: 4px;">Pre-FEC (Raw Model)</div>
+                    <div style="font-size: 11.5px; font-family: monospace; word-break: break-all; overflow-wrap: break-word;">"${sanitizeForDisplay(data.recovered_pre_fec)}"</div>
                 </div>
             </details>
         </div>
@@ -452,8 +453,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <summary style="font-size: 11.5px; color: #991b1b; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 2px 0; margin: 0;">
                     <span style="font-size: 10px;">▾</span> Show intermediate output
                 </summary>
-                <div style="margin-top: 6px; font-size: 11.5px; color: #991b1b; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(185,28,28,0.04); border-radius: var(--rounded-sm); border: 1px dashed #fca5a5; word-break: break-all; overflow-wrap: break-word;">
-                    <strong>Pre-FEC (Classical):</strong> "${traditionalOutput}"
+                <div style="margin-top: 6px; color: #991b1b; opacity: 0.85; padding: 8px 10px; background: rgba(185,28,28,0.04); border-radius: var(--rounded-sm); border: 1px dashed #fca5a5;">
+                    <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-family: sans-serif; margin-bottom: 4px;">Pre-FEC (Classical)</div>
+                    <div style="font-size: 11.5px; font-family: monospace; word-break: break-all; overflow-wrap: break-word;">"${traditionalOutput}"</div>
                 </div>
             </details>
             <div style="margin-top: 4px; font-size: 11px; color: #991b1b; opacity: 0.7; display: flex; align-items: center; gap: 4px; white-space: nowrap;">
