@@ -1682,3 +1682,44 @@ canvas {
         width: 100%;
     }
 }
+
+/* ────────────────────────────────────────────────────────────
+   PROMPT BAR MOBILE OPTIMIZATIONS
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .llm-prompt-container {
+        padding: 12px 14px !important;
+        border-radius: 16px !important;
+    }
+    
+    .prompt-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .prompt-plus-icon {
+        display: none;
+    }
+    
+    .prompt-input {
+        width: 100% !important;
+        font-size: 15px;
+        padding: 6px 0;
+    }
+    
+    .prompt-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        border-top: 1px solid var(--hairline-soft);
+        padding-top: 10px;
+    }
+    
+    .btn-config-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
