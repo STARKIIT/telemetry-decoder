@@ -443,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 6px; font-family: sans-serif;">Post-FEC (Classical, Failed)</div>
                 <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalPostFec}"</div>
             </div>
-            <details style="margin-top: 10px;">
+            <details style="margin-top: 6px; margin-bottom: 0;">
                 <summary style="font-size: 11.5px; color: #991b1b; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 4px 0;">
                     <span style="font-size: 10px;">▾</span> Show intermediate output
                 </summary>
@@ -451,8 +451,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <strong>Pre-FEC (Classical):</strong> "${traditionalOutput}"
                 </div>
             </details>
-            <div style="margin-top: 10px; font-size: 11px; color: #991b1b; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
-                <span>⚠</span> Cannot recover — too many errors for FEC to correct
+            <div style="margin-top: 4px; font-size: 11px; color: #991b1b; opacity: 0.7; display: flex; align-items: center; gap: 4px; white-space: nowrap;">
+                <span style="line-height: 1;">⚠</span><span>Cannot recover — too many errors for FEC to correct</span>
             </div>
         </div>
     </div>
