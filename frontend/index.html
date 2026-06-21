@@ -378,6 +378,182 @@
                 <div id="framesBitGridContainer"></div>
             </div>
 
+            <!-- How It Works Section -->
+            <section class="how-it-works-section" id="howItWorksSection" style="margin-top: 32px;">
+                <div class="how-it-works-header" id="howItWorksHeader" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: var(--canvas); border: 1px solid var(--hairline-soft); border-radius: var(--rounded-xl); padding: 20px 24px; box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px; transition: all 0.2s ease;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <span style="font-size: 24px; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-soft); width: 44px; height: 44px; border-radius: var(--rounded-lg);">📖</span>
+                        <div>
+                            <h2 class="heading-sm" style="margin: 0; font-size: 20px;">How It Works</h2>
+                            <p class="body-sm" style="color: var(--steel); margin: 0; margin-top: 2px;">Step-by-step visualization of digitization, modulation, and error-correction</p>
+                        </div>
+                    </div>
+                    <div class="toggle-icon" id="howItWorksToggleIcon" style="transition: transform 0.3s ease; transform: rotate(0deg); display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--ink-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="how-it-works-content collapsed" id="howItWorksContent" style="display: none; margin-top: 24px; flex-direction: column; gap: 32px;">
+                    <!-- Panel 1: From Message to Radio Wave -->
+                    <div class="card-product-feature" style="padding: 28px 24px;">
+                        <div style="margin-bottom: 24px;">
+                            <h3 class="heading-sm" style="margin: 0 0 4px 0; font-size: 22px;">From Message to Radio Wave</h3>
+                            <div class="body-sm" style="color: var(--steel);">How your text becomes a PCM-FM signal (digitization &rarr; modulation)</div>
+                        </div>
+
+                        <!-- Horizontal Stages Strip -->
+                        <div class="stages-strip-container">
+                            <div class="stages-strip">
+                                <!-- Stage 1 Card: Text -->
+                                <div class="walkthrough-card active-card" data-stage="1">
+                                    <div class="walkthrough-card-num">1</div>
+                                    <h4 class="body-sm-bold" style="margin: 4px 0;">Text</h4>
+                                    <div class="walkthrough-mini-viz monospace">"HI"</div>
+                                    <div class="walkthrough-card-caption">Your message.</div>
+                                </div>
+                                <div class="stage-arrow">&rarr;</div>
+
+                                <!-- Stage 2 Card: ASCII bits -->
+                                <div class="walkthrough-card" data-stage="2">
+                                    <div class="walkthrough-card-num">2</div>
+                                    <h4 class="body-sm-bold" style="margin: 4px 0;">ASCII bits</h4>
+                                    <div class="walkthrough-mini-viz monospace" style="font-size: 10px; font-weight: 700; white-space: nowrap;">01001000...</div>
+                                    <div class="walkthrough-card-caption">Each character &rarr; 8 bits.</div>
+                                </div>
+                                <div class="stage-arrow">&rarr;</div>
+
+                                <!-- Stage 3 Card: NRZ symbols -->
+                                <div class="walkthrough-card" data-stage="3">
+                                    <div class="walkthrough-card-num">3</div>
+                                    <h4 class="body-sm-bold" style="margin: 4px 0;">NRZ symbols</h4>
+                                    <div class="walkthrough-mini-viz">
+                                        <svg viewBox="0 0 80 30" width="80" height="30" style="display: block;">
+                                            <path d="M 5 22 L 22 22 L 22 8 L 32 8 L 32 22 L 52 22 L 52 8 L 62 8 L 62 22 L 75 22" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="walkthrough-card-caption">Bits become &plusmn;1 levels.</div>
+                                </div>
+                                <div class="stage-arrow">&rarr;</div>
+
+                                <!-- Stage 4 Card: Pulse shaping -->
+                                <div class="walkthrough-card" data-stage="4">
+                                    <div class="walkthrough-card-num">4</div>
+                                    <h4 class="body-sm-bold" style="margin: 4px 0;">Pulse shaping</h4>
+                                    <div class="walkthrough-mini-viz">
+                                        <svg viewBox="0 0 80 30" width="80" height="30" style="display: block;">
+                                            <path d="M 5 22 C 15 22, 17 8, 27 8 C 30 8, 30 22, 42 22 C 45 22, 47 8, 57 8 C 60 8, 60 22, 75 22" fill="none" stroke="var(--primary-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="walkthrough-card-caption">Edges are smoothed.</div>
+                                </div>
+                                <div class="stage-arrow">&rarr;</div>
+
+                                <!-- Stage 5 Card: PCM-FM waveform -->
+                                <div class="walkthrough-card" data-stage="5">
+                                    <div class="walkthrough-card-num">5</div>
+                                    <h4 class="body-sm-bold" style="margin: 4px 0;">PCM-FM waveform</h4>
+                                    <div class="walkthrough-mini-viz">
+                                        <svg viewBox="0 0 80 30" width="80" height="30" style="display: block;">
+                                            <path d="M 5 15 Q 8 3 11 15 T 17 15 Q 19 6 21 15 T 25 15 Q 28 3 31 15 T 37 15 Q 41 27 45 15 T 53 15 Q 57 27 61 15 T 69 15 Q 72 3 75 15" fill="none" stroke="var(--fb-blue)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="walkthrough-card-caption">Steers carrier frequency.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stage Detail Card Area -->
+                        <div class="stage-detail-panel" id="stageDetailPanel" style="margin-top: 24px; padding: 20px; background: var(--surface-soft); border-radius: var(--rounded-lg); border: 1px solid var(--hairline-soft); display: flex; gap: 24px; align-items: center;">
+                            <div class="stage-detail-text" style="flex: 1.2;">
+                                <h4 class="body-md-bold" id="stageDetailTitle" style="color: var(--ink-deep); margin-bottom: 8px;">1. Text Input ("HI")</h4>
+                                <p class="body-sm" id="stageDetailDesc" style="color: var(--charcoal); line-height: 1.6; margin: 0;">
+                                    Telemetry signals start as structured digital information, such as commands, GPS coordinates, or state variables. In this explainer, we trace the fixed 2-character text message <strong>"HI"</strong>.
+                                </p>
+                            </div>
+                            <div class="stage-detail-visual" id="stageDetailVisual" style="flex: 0.8; max-width: 400px; background: var(--canvas); border-radius: var(--rounded-md); border: 1px solid var(--hairline-soft); padding: 16px; display: flex; justify-content: center; align-items: center; min-height: 160px; box-shadow: rgba(0,0,0,0.01) 0 2px 4px;">
+                                <div style="font-family: monospace; font-size: 48px; font-weight: 700; color: var(--primary); letter-spacing: 4px; border: 3px solid var(--primary); padding: 12px 36px; border-radius: var(--rounded-md); background: var(--canvas); box-shadow: 0 4px 12px rgba(0, 100, 224, 0.08);">HI</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 24px; border-top: 1px dashed var(--hairline); padding-top: 16px; text-align: center;">
+                            <p class="body-sm-bold" style="color: var(--ink-deep); margin-bottom: 4px; line-height: 1.4;">
+                                "A 256-bit frame becomes a 2560-sample complex waveform in 256 microseconds. The data lives in the signal's frequency, not its amplitude."
+                            </p>
+                            <p class="caption" style="color: var(--steel); margin: 0;">
+                                Real telemetry parameters: 1 Mbit/s transmission speed, modulation index <em>h</em> = 0.70 (&plusmn;350 kHz frequency swing), Gaussian shaping <em>BT</em> = 0.5, 10 samples per bit.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: How Errors Get Corrected -->
+                    <div class="card-product-feature" style="padding: 28px 24px;">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+                            <div>
+                                <h3 class="heading-sm" style="margin: 0 0 4px 0; font-size: 22px;">How Errors Get Corrected</h3>
+                                <div class="body-sm" style="color: var(--steel);">Error-correction coding (LDPC) rescues bits the model gets wrong</div>
+                            </div>
+                            <button type="button" class="btn-secondary" id="btnReplayFec" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; border-radius: var(--rounded-md); border: 1px solid var(--hairline); background: var(--canvas); transition: all 0.2s; color: var(--ink-deep);">
+                                <span style="font-size: 14px;">&#8635;</span> Replay
+                            </button>
+                        </div>
+
+                        <!-- Main Animated Bit Grid Container -->
+                        <div id="fecAnimationContainer" class="fec-interactive-container">
+                            <div class="fec-labels" style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; color: var(--steel);">
+                                <span class="body-sm-bold" id="fecLeftLabel">Data Block (1025 bits)</span>
+                                <span class="body-sm-bold" id="fecRightLabel">Parity Block (1021 bits)</span>
+                            </div>
+                            <div class="fec-grid" id="fecBitGrid">
+                                <!-- Generated by JS: 20 columns x 8 rows = 160 cells -->
+                            </div>
+                            <div class="fec-caption-container" style="margin-top: 16px; display: flex; align-items: center; gap: 12px; min-height: 52px; background: var(--surface-soft); padding: 12px 16px; border-radius: var(--rounded-md); border: 1px solid var(--hairline-soft);">
+                                <span id="fecStatusIndicator" style="font-size: 20px; display: inline-flex; align-items: center; justify-content: center;">&#128225;</span>
+                                <p class="body-sm" id="fecCaption" style="color: var(--charcoal); margin: 0; line-height: 1.5;"></p>
+                            </div>
+                        </div>
+
+                        <!-- Reduced Motion Static Version -->
+                        <div id="fecStaticFallbackContainer" class="fec-static-fallback-container" style="display: none;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                                <!-- Snap 1: Encode -->
+                                <div class="static-snap-card" style="background: var(--surface-soft); border: 1px solid var(--hairline-soft); padding: 16px; border-radius: var(--rounded-md);">
+                                    <h4 class="body-sm-bold" style="margin-bottom: 8px; color: var(--primary);">1. Encode (Codeword)</h4>
+                                    <div class="fec-static-grid snap1-grid" style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; margin-bottom: 12px;"></div>
+                                    <p class="caption" style="color: var(--charcoal); line-height: 1.4; margin: 0;">Your message (1025 bits) is expanded with parity bits (1021 bits) to create a 2046-bit codeword.</p>
+                                </div>
+                                <!-- Snap 2: Corrupt -->
+                                <div class="static-snap-card" style="background: var(--surface-soft); border: 1px solid var(--hairline-soft); padding: 16px; border-radius: var(--rounded-md);">
+                                    <h4 class="body-sm-bold" style="margin-bottom: 8px; color: var(--critical);">2. Corrupted Channel</h4>
+                                    <div class="fec-static-grid snap2-grid" style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; margin-bottom: 12px;"></div>
+                                    <p class="caption" style="color: var(--charcoal); line-height: 1.4; margin: 0;">RF noise and LTE interference flip ~7% of the codeword bits to red errors (about 77 bits in total).</p>
+                                </div>
+                                <!-- Snap 3: Correct -->
+                                <div class="static-snap-card" style="background: var(--surface-soft); border: 1px solid var(--hairline-soft); padding: 16px; border-radius: var(--rounded-md);">
+                                    <h4 class="body-sm-bold" style="margin-bottom: 8px; color: var(--success);">3. Corrected (FEC)</h4>
+                                    <div class="fec-static-grid snap3-grid" style="display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; margin-bottom: 12px;"></div>
+                                    <p class="caption" style="color: var(--charcoal); line-height: 1.4; margin: 0;">The LDPC decoder identifies and flips the error bits back to green, recovering the original data perfectly.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explainer note under Panel 2 -->
+                        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--hairline-soft);">
+                            <p class="body-sm" style="color: var(--charcoal); font-style: italic; line-height: 1.6; margin: 0;">
+                                &ldquo;This is why the demo can show a garbled raw output and a perfect final message at the same time &mdash; the model does the heavy lifting, and the code cleans up the rest.&rdquo;
+                            </p>
+                            <div style="margin-top: 12px; background: var(--canvas); border-left: 3px solid var(--primary-soft); padding: 10px 14px; border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0;">
+                                <p class="caption" style="color: var(--steel); margin: 0; line-height: 1.5;">
+                                    <strong>Rate-1/2</strong> means half the transmitted bits are redundancy. More redundancy = more errors correctable, at the cost of throughput. This project uses IRIG-106-class LDPC codes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
             <!-- Limitations & Open Challenges Section -->
             <section class="limitations-section" id="limitationsSection" style="margin-top: 48px;">
                 <div class="limitations-header" style="text-align: center; margin-bottom: 32px;">
