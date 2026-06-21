@@ -67,7 +67,7 @@
                         <div class="about-segment-num">01. CONFLICT</div>
                         <h2 class="about-segment-title">The Problem</h2>
                         <p class="about-segment-desc">
-                            Aircraft and missiles send telemetry — altitude, speed, position, sensor data — back to the ground as radio signals. The frequency bands they use now overlap with 5G and LTE networks. When a cell tower transmits over the same band, the interference can be <strong>stronger than the telemetry signal itself</strong>, causing the signal to be completely lost.
+                            Aircraft and missiles transmit telemetry back to ground stations as radio signals — altitude, speed, position, and sensor data riding on a carrier wave. The frequency bands they use now overlap with commercial 5G and LTE networks. When a nearby cell tower transmits on the same band, the interference can be <strong>stronger than the telemetry signal itself</strong>, and the data is completely lost.
                         </p>
                     </div>
                     <div class="about-segment-right">
@@ -96,7 +96,7 @@
                         <div class="about-segment-num">02. LIMITATIONS</div>
                         <h2 class="about-segment-title">Why Traditional Receivers Fail</h2>
                         <p class="about-segment-desc">
-                            Classical receivers were built to pull a signal out of random background static. They assume interference is weak and noise-like. But 5G/LTE isn't random noise — it's a strong, structured signal sitting right on top of yours. A traditional receiver can't tell the two apart, so it rejects or distorts both, failing to extract any telemetry.
+                            Classical receivers were designed to pull a signal out of weak, random background noise. 5G and LTE transmissions are structurally different: they are strong, structured signals that overlap the telemetry band directly. A traditional receiver has no way to distinguish the two, so it fails to extract anything useful.
                         </p>
                     </div>
                     <div class="about-segment-right">
@@ -130,7 +130,7 @@
                         <div class="about-segment-num">03. EXCISION</div>
                         <h2 class="about-segment-title">What This Does</h2>
                         <p class="about-segment-desc">
-                            This is a deep learning receiver that <strong>learns</strong> what cellular interference looks like and separates it from the telemetry signal — like picking out one voice in a loud room instead of just turning the volume down. A neural network reconstructs the clean signal, and error correction coding fixes whatever remains. The result: the original message is recovered exactly, even when the interference outpowers the signal.
+                            This receiver <strong>learns</strong> the structure of cellular interference and separates it from the telemetry signal — the way you pick out one voice in a noisy room, rather than just lowering the volume. A neural network reconstructs the clean waveform, and error correction closes whatever gap remains. The original message comes back exactly, even when the interference outpowers the signal.
                         </p>
                     </div>
                     <div class="about-segment-right">
@@ -177,7 +177,7 @@
                         <span class="tile-icon"><i class="ph-duotone ph-lightning"></i></span>
                         <h3 class="subtitle-lg">Spectral Excision</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
-                            SpectralGate maps incoming noisy IQ spectra into standardized log-magnitude/phase domains to selectively isolate and excise wideband blockers.
+                            SpectralGate transforms the noisy received spectrum into a standardized frequency-domain representation, then learns to selectively zero out wideband cellular blockers before demodulation.
                         </p>
                     </div>
                     <div class="why-buy-tile">
@@ -191,7 +191,7 @@
                         <span class="tile-icon"><i class="ph-duotone ph-shield-check"></i></span>
                         <h3 class="subtitle-lg">Min-Sum LDPC</h3>
                         <p class="body-sm" style="color: var(--charcoal);">
-                            Calibrated Log Likelihood Ratios feed a rate 1/2 LDPC decoder (50 max iterations), restoring corrupted signals error free even during severe jammer overlaps.
+                            Temperature-calibrated soft decisions feed a rate-1/2 LDPC decoder running up to 50 iterations of belief propagation. It corrects residual bit errors and restores the message exactly, even during severe jamming.
                         </p>
                     </div>
                 </div>
@@ -582,7 +582,7 @@
                             The receiver currently runs at approximately <strong>0.75× real-time</strong> on an NVIDIA L4 GPU — it processes data slightly slower than it arrives. A deployed range receiver needs to sustain ~3,900 frames/second continuously.
                         </p>
                         <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
-                            <strong>Paths to close the gap:</strong> Better deployment hardware (A100/H100 + TensorRT), a hybrid classical/neural receiver, or a distilled smaller model.
+                            <strong>Paths to close the gap:</strong> Optimizing for deployment-grade hardware (A100 or H100 with TensorRT), using a hybrid design that only engages the neural receiver when interference is detected, or training a smaller distilled model.
                         </p>
                     </div>
 
@@ -594,7 +594,7 @@
                             <h3 class="heading-sm" style="margin: 0;">Hardware End to End Testing</h3>
                         </div>
                         <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin-bottom: 12px;">
-                            All performance results are currently evaluated on **high fidelity simulated RF channels** modeling realistic cellular network dynamics, Doppler shifts, and thermal noise.
+                            All performance results are from a high-fidelity simulated RF channel that models realistic cellular dynamics, Doppler shifts, and thermal noise. No over-the-air hardware testing has been conducted yet.
                         </p>
                         <p class="body-sm" style="color: var(--steel); line-height: 1.65; margin: 0;">
                             <strong>Next phase:</strong> Live over the air testing utilizing physical software defined radio (SDR) hardware and off the air signal recordings.
@@ -852,7 +852,7 @@
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">UNet Wave Denoiser</div>
-                        <div class="specs-value body-sm">SE-ResBlock encoder/decoder with skips, mapping noisy IQ signals to clean templates</div>
+                        <div class="specs-value body-sm">SE-ResBlock encoder-decoder with skip connections, mapping corrupted IQ samples to clean waveform templates</div>
                     </div>
                     <div class="specs-row">
                         <div class="specs-label body-sm-bold">Conformer Network Stack</div>
@@ -932,7 +932,7 @@
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">Spectral Excision</div>
-                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency domain filtering that selectively zeroes out narrow/wideband interference peaks.</div>
+                        <div class="glossary-def" style="font-size: 12px; color: var(--charcoal); line-height: 1.5;">Frequency domain filtering that selectively zeroes out interference peaks, whether narrowband tones or wideband cellular blockers.</div>
                     </div>
                     <div class="glossary-item" style="background: var(--surface-soft); border-radius: var(--rounded-lg); padding: 20px; border: 1px solid var(--hairline-soft);">
                         <div class="glossary-term" style="font-weight: 700; color: var(--ink-deep); font-size: 14px; margin-bottom: 6px; font-family: sans-serif;">SpectralGate Layer</div>
@@ -984,7 +984,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            A deep learning radio receiver that recovers telemetry data — altitude, speed, position, sensor readings — from signals corrupted by 5G/LTE interference, even when the interference is stronger than the signal itself.
+                            A deep learning radio receiver that recovers aircraft telemetry from signals corrupted by 5G and LTE interference. It works even when the interfering signal is stronger than the telemetry itself — a condition where every classical receiver fails.
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
@@ -994,7 +994,7 @@
                             <span class="faq-icon">▾</span>
                         </div>
                         <div class="faq-answer body-md" style="padding: 16px 0; line-height: 1.6; color: var(--charcoal);">
-                            Classical receivers were designed to pull a signal out of weak, random background noise. 5G/LTE is the opposite: a strong, structured signal that overlaps yours in the same frequency band. Traditional methods can't separate two signals sharing a band — so they fail.
+                            Classical receivers were designed to fight random background noise — they work by boosting signal-to-noise ratio. 5G and LTE are a fundamentally different problem: strong, structured transmissions that sit directly on top of the telemetry band. No amount of filtering fixes that when both signals share the same frequency.
                         </div>
                     </div>
                     <!-- FAQ Item 3 -->
@@ -1196,7 +1196,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">AI Defined Radio Systems</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                Learned receivers that adapt to the structure of interference &mdash; rather than relying on fixed classical filters &mdash; represent a generational shift in how resilient communication and signal-intelligence systems are built.
+                                Learned receivers that adapt to the structure of interference — rather than depending on static filters — represent a generational shift in how resilient communication systems are designed. This applies equally to signal intelligence and civilian communications infrastructure.
                             </p>
                         </div>
  
@@ -1208,7 +1208,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">Dual Use Aerospace Value</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                Solving telemetry versus cellular coexistence has direct civilian benefit (aviation, congested band IoT and urban communications) alongside its defense relevance &mdash; the same capability serves both.
+                                The same interference problem affects civilian aviation, urban IoT networks, and congested frequency bands. Solving it in the context of flight test telemetry produces a capability with direct dual-use value across defense and commercial applications.
                             </p>
                         </div>
  
@@ -1220,7 +1220,7 @@
                                 <h3 class="heading-sm" style="margin: 0; font-size: 18px;">National Spectrum Coexistence</h3>
                             </div>
                             <p class="body-sm" style="color: var(--charcoal); line-height: 1.65; margin: 0;">
-                                As more services compete for the same bands, the capacity to extract a wanted signal from a crowded, overlapping RF environment is increasingly strategic &mdash; for safety, for communications reliability, and for situational awareness.
+                                As more services compete for the same frequency bands, the ability to recover a wanted signal from a crowded RF environment becomes a strategic asset. It underpins safety of flight, operational communications reliability, and situational awareness in contested environments.
                             </p>
                         </div>
                     </div>
