@@ -55,6 +55,16 @@ echo -e "${BLUE}[3/4] Initializing temporary git repo & committing...${NC}"
 git init -b main
 git config user.name "Telemetry Deployer"
 git config user.email "deploy@telemetry.local"
+
+# Setup Git LFS tracking for PyTorch model files
+if command -v git-lfs &> /dev/null; then
+    git lfs install
+    git lfs track "*.pth"
+    git add .gitattributes
+else
+    echo -e "${RED}Warning: git-lfs not found. Pushing model files without Git LFS will fail.${NC}"
+fi
+
 git add .
 git commit -m "Deploy Telemetry Decoder Simulation Backend API"
 
