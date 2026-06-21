@@ -298,6 +298,27 @@ body {
     align-items: center;
 }
 
+.colab-link-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--surface-soft);
+    border: 1px solid var(--hairline-soft);
+    padding: 6px 14px;
+    border-radius: var(--rounded-full);
+    color: var(--charcoal);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.colab-link-btn:hover {
+    background-color: var(--hairline-soft);
+    color: var(--ink-deep);
+    border-color: var(--hairline);
+}
+
 .search-pill {
     background-color: var(--surface-soft);
     color: var(--steel);
