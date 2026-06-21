@@ -377,7 +377,8 @@ document.addEventListener("DOMContentLoaded", () => {
             window.lastRawErrors = st.total_raw_errors;
             const syncLockStr = st.psl >= 1.5 ? "strong" : "weak";
 
-            // Generate simulated traditional output
+            // Generate simulated traditional output (pre-FEC, classical)
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%&*()_-+=";
             let traditionalOutput = "";
             if (payload.interference === "none") {
                 const snr = payload.snr_db;
@@ -389,12 +390,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     traditionalOutput = data.message_sent.split('').map(c => Math.random() < 0.35 ? '?' : (Math.random() < 0.1 ? String.fromCharCode(33 + Math.floor(Math.random() * 90)) : c)).join('');
                 }
             } else {
-                const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%&*()_-+=";
-                traditionalOutput = data.message_sent.split('').map((c, i) => {
+                traditionalOutput = data.message_sent.split('').map(() => {
                     const r = Math.random();
                     if (r < 0.5) return '?';
                     if (r < 0.8) return chars[Math.floor(Math.random() * chars.length)];
-                    return String.fromCharCode(160 + Math.floor(Math.random() * 95)); // non-ascii junk
+                    return String.fromCharCode(160 + Math.floor(Math.random() * 95));
+                }).join('');
+            }
+
+            // Simulated classical post-FEC: LDPC applied to ~50% BER input — cannot converge, outputs different garbage
+            let traditionalPostFec = "";
+            if (payload.interference === "none" && payload.snr_db >= 25) {
+                traditionalPostFec = data.message_sent; // no interference — classical works fine
+            } else {
+                traditionalPostFec = data.message_sent.split('').map(() => {
+                    const r = Math.random();
+                    if (r < 0.42) return '?';
+                    if (r < 0.72) return chars[Math.floor(Math.random() * chars.length)];
+                    return String.fromCharCode(33 + Math.floor(Math.random() * 94));
                 }).join('');
             }
 
@@ -409,24 +422,33 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="comparison-column">
         <div class="comparison-label">Deep Conformer Model (Ours)</div>
         <div class="comparison-box our-model" style="padding: 16px; border: 1px solid #bbf7d0; background: #edfdf1; border-radius: var(--rounded-lg);">
-            <div style="font-size: 12px; color: #166534; margin-bottom: 8px; opacity: 0.95; font-family: monospace;">
-                <strong>Raw Model (Pre-FEC):</strong> "${data.recovered_pre_fec}"
-            </div>
-            <div style="background: #ffffff; border: 1px solid #86efac; border-radius: var(--rounded-md); padding: 12px; margin-top: 10px; box-shadow: 0 2px 4px rgba(21, 128, 61, 0.05);">
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #166534; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Final Recovered (Post-FEC)</div>
+            <div style="background: #ffffff; border: 1px solid #86efac; border-radius: var(--rounded-md); padding: 12px; box-shadow: 0 2px 4px rgba(21, 128, 61, 0.05);">
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #166534; font-weight: 700; margin-bottom: 6px; font-family: sans-serif;">Model Output</div>
                 <div style="font-size: 16px; font-weight: 800; color: #15803d; font-family: monospace; word-break: break-word;">"${data.recovered_post_fec}"</div>
             </div>
+            <details style="margin-top: 10px;">
+                <summary style="font-size: 11.5px; color: #166534; font-weight: 600; cursor: pointer; user-select: none; list-style: none; display: flex; align-items: center; gap: 5px; opacity: 0.75; padding: 4px 0;">
+                    <span style="font-size: 10px;">▾</span> Show intermediate output
+                </summary>
+                <div style="margin-top: 8px; font-size: 11.5px; color: #166534; font-family: monospace; opacity: 0.85; padding: 8px 10px; background: rgba(21,128,61,0.04); border-radius: var(--rounded-sm); border: 1px dashed #86efac;">
+                    <strong>Pre-FEC (Raw Model):</strong> "${data.recovered_pre_fec}"
+                </div>
+            </details>
         </div>
     </div>
     <div class="comparison-column">
         <div class="comparison-label">Traditional Decoder (No Excision)</div>
         <div class="comparison-box traditional" style="padding: 16px; border: 1px solid #f8b4b4; background: #fdf2f2; border-radius: var(--rounded-lg);">
-            <div style="font-size: 12px; color: #991b1b; margin-bottom: 8px; opacity: 0.95; font-family: monospace;">
-                <strong>Status:</strong> Jammed / Correlation loss
+            <div style="font-size: 12px; color: #991b1b; margin-bottom: 10px; opacity: 0.9; font-family: monospace;">
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif; opacity: 0.75;">Pre-FEC (Classical)</div>
+                <span style="opacity: 0.8;">"${traditionalOutput}"</span>
             </div>
-            <div style="background: #ffffff; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 12px; margin-top: 10px; box-shadow: 0 2px 4px rgba(185, 28, 28, 0.05);">
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Final Recovered</div>
-                <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalOutput}"</div>
+            <div style="background: #ffffff; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 12px; box-shadow: 0 2px 4px rgba(185, 28, 28, 0.05);">
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #991b1b; font-weight: 700; margin-bottom: 4px; font-family: sans-serif;">Post-FEC (Classical, Failed)</div>
+                <div style="font-size: 16px; font-weight: 800; color: #b91c1c; font-family: monospace; word-break: break-word; opacity: 0.75;">"${traditionalPostFec}"</div>
+            </div>
+            <div style="margin-top: 10px; font-size: 11px; color: #991b1b; opacity: 0.7; display: flex; align-items: center; gap: 5px;">
+                <span>⚠</span> Cannot recover — too many errors for FEC to correct
             </div>
         </div>
     </div>
